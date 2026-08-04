@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ironbeam Detailing Works | Structural Steel</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#111214;
+    --panel:#1b1c1f;
+    --yellow:#ffcc00;
+    --grey:#9aa0a8;
+    --line:#2c2d31;
+  }
+  body{font-family:'Barlow',sans-serif;background:var(--black);color:#f2f2f0;}
+  h1,h2,h3,h4,.navbar-brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+  .text-yellow{color:var(--yellow)!important;}
+  .bg-yellow{background:var(--yellow)!important;}
+  .bg-panel{background:var(--panel)!important;}
+  .btn-yellow{background:var(--yellow);border-color:var(--yellow);color:#111214;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+  .btn-yellow:hover{background:#e6b800;border-color:#e6b800;color:#111214;}
+  .btn-outline-yellow{border:2px solid var(--yellow);color:var(--yellow);font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+  .btn-outline-yellow:hover{background:var(--yellow);color:#111214;}
+  .section-pad{padding:100px 0;}
+  .kicker{color:var(--yellow);font-weight:700;letter-spacing:3px;text-transform:uppercase;font-size:.8rem;}
+  .hazard-strip{height:10px;background:repeating-linear-gradient(45deg,var(--yellow) 0 16px,#111214 16px 32px);}
+
+  .reveal{opacity:0;transform:translateY(35px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal.delay-1{transition-delay:.1s;} .reveal.delay-2{transition-delay:.22s;} .reveal.delay-3{transition-delay:.34s;} .reveal.delay-4{transition-delay:.46s;}
+
+  .navbar{background:rgba(17,18,20,.9)!important;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:16px 0;}
+  .navbar-brand{color:#fff!important;}
+  .navbar-brand i{color:var(--yellow);}
+  .nav-link{color:#e7e7e5!important;font-weight:600;text-transform:uppercase;font-size:.88rem;letter-spacing:.5px;}
+  .nav-link:hover{color:var(--yellow)!important;}
+  .navbar-toggler{border-color:var(--yellow);}
+
+  .hero{
+    min-height:94vh;display:flex;align-items:center;position:relative;
+    background:linear-gradient(180deg,rgba(17,18,20,.55),rgba(17,18,20,.95)),url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1600&q=80') center/cover;
+    padding-top:80px;
+  }
+  .hero:after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,204,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,204,0,.05) 1px,transparent 1px);background-size:46px 46px;pointer-events:none;}
+  .hero .badge-tag{background:var(--yellow);color:#111214;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:.78rem;padding:8px 16px;}
+  .hero h1{font-size:3.6rem;line-height:1.05;color:#fff;}
+  .hero h1 .out{-webkit-text-stroke:2px var(--yellow);color:transparent;}
+  .hero p.lead{color:var(--grey);max-width:520px;}
+
+  .marquee{background:var(--yellow);color:#111214;padding:14px 0;overflow:hidden;white-space:nowrap;}
+  .marquee-track{display:inline-block;animation:scroll-left 22s linear infinite;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;letter-spacing:1px;}
+  .marquee-track span{margin:0 22px;}
+  @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  .svc-card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:32px 26px;height:100%;transition:all .35s ease;position:relative;}
+  .svc-card:hover{border-color:var(--yellow);transform:translateY(-6px);}
+  .svc-card .idx{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--yellow);font-size:1.6rem;opacity:.6;}
+  .svc-card h5{color:#fff;margin-top:14px;}
+  .svc-card p{color:var(--grey);font-size:.9rem;}
+
+  .why-img{border:3px solid var(--yellow);border-radius:4px;overflow:hidden;}
+  .why-img img{filter:grayscale(50%) contrast(1.1);}
+  .progress{height:10px;border-radius:2px;background:var(--panel);border:1px solid var(--line);}
+  .progress-bar{background:var(--yellow);}
+
+  .accordion-item{background:var(--panel);border:1px solid var(--line)!important;border-radius:4px!important;overflow:hidden;margin-bottom:14px;}
+  .accordion-button{background:var(--panel);color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:.95rem;}
+  .accordion-button:not(.collapsed){background:var(--yellow);color:#111214;}
+  .accordion-button::after{filter:invert(1);}
+  .accordion-button:not(.collapsed)::after{filter:none;}
+  .accordion-button:focus{box-shadow:none;}
+  .accordion-body{color:var(--grey);}
+
+  .numbers-strip{background:var(--yellow);color:#111214;}
+  .numbers-strip .num{font-family:'Barlow Condensed',sans-serif;font-size:2.6rem;font-weight:700;}
+  .numbers-strip .lbl{font-weight:700;text-transform:uppercase;font-size:.8rem;letter-spacing:1px;}
+
+  .port-thumb{position:relative;border-radius:4px;overflow:hidden;height:230px;cursor:pointer;border:1px solid var(--line);}
+  .port-thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(70%) brightness(.75);transition:transform .6s ease,filter .4s ease;}
+  .port-thumb:hover img{transform:scale(1.12);filter:grayscale(0%) brightness(.55);}
+  .port-cap{position:absolute;inset:0;display:flex;align-items:flex-end;padding:16px;}
+  .port-cap span{color:var(--yellow);font-weight:700;text-transform:uppercase;font-size:.9rem;letter-spacing:.5px;}
+
+  .quote-panel{background:var(--panel);border:1px solid var(--line);border-radius:4px;}
+  .quote-panel .form-control{background:#111214;border:1px solid var(--line);color:#fff;border-radius:2px;}
+  .quote-panel .form-control:focus{border-color:var(--yellow);box-shadow:none;background:#111214;color:#fff;}
+  .quote-panel .form-control::placeholder{color:var(--grey);}
+
+  .testi-slide{max-width:680px;margin:0 auto;text-align:center;}
+  .testi-slide i.bi-quote{font-size:2.2rem;color:var(--yellow);}
+
+  footer{background:#0a0a0b;border-top:1px solid var(--line);}
+  footer h5{color:#fff;}
+  footer a{color:var(--grey);text-decoration:none;}
+  footer a:hover{color:var(--yellow);}
+  .social-ic{width:36px;height:36px;border-radius:2px;border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;transition:all .3s ease;color:var(--grey);}
+  .social-ic:hover{background:var(--yellow);border-color:var(--yellow);color:#111214;}
+
+  .back-to-top{position:fixed;bottom:26px;right:26px;width:48px;height:48px;border-radius:2px;background:var(--yellow);color:#111214;display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+  .back-to-top.show{opacity:1;pointer-events:all;}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#"><i class="bi bi-cone-striped"></i> IRONBEAM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Work</a></li>
+        <li class="nav-item"><a class="btn btn-yellow px-4" href="#contact">Get Quote</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-lg-8">
+        <span class="badge-tag d-inline-block mb-3"><i class="bi bi-exclamation-triangle-fill me-1"></i> Ironbeam Detailing Works</span>
+        <h1 class="mb-3">Built <span class="out">Tough.</span><br>Detailed Precisely.</h1>
+        <p class="lead">Structural steel detailing, connection engineering, and estimating for fabricators who can't afford field surprises.</p>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="#contact" class="btn btn-yellow btn-lg px-4">Contact Us <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="#portfolio" class="btn btn-outline-yellow btn-lg px-4">View Work</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="hazard-strip"></div>
+
+<div class="marquee">
+  <div class="marquee-track">STRUCTURAL DETAILING <span>◆</span> CONNECTION DESIGN <span>◆</span> JOIST & DECK <span>◆</span> ESTIMATING <span>◆</span> STRUCTURAL DETAILING <span>◆</span> CONNECTION DESIGN <span>◆</span> JOIST & DECK <span>◆</span> ESTIMATING <span>◆</span></div>
+</div>
+
+<section class="section-pad" id="about">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="kicker mb-2">What We Do</div>
+      <h2>Services Engineered For The Job Site</h2>
+      <p class="text-secondary mx-auto" style="max-width:640px;">Every drawing is built by people who understand fabrication shop realities — accuracy that reduces RFIs and field rework.</p>
+    </div>
+    <div class="row g-4" id="services">
+      <div class="col-md-6 col-lg-3 reveal delay-1"><div class="svc-card"><div class="idx">01</div><h5>Structural Detailing</h5><p>3D steel models with shop and erection drawings for main and misc steel.</p></div></div>
+      <div class="col-md-6 col-lg-3 reveal delay-2"><div class="svc-card"><div class="idx">02</div><h5>Connection Design</h5><p>Safe, economical connection alternatives engineered for constructability.</p></div></div>
+      <div class="col-md-6 col-lg-3 reveal delay-3"><div class="svc-card"><div class="idx">03</div><h5>Joist & Deck Detailing</h5><p>Girders, open web joists, composite and non-composite deck systems.</p></div></div>
+      <div class="col-md-6 col-lg-3 reveal delay-4"><div class="svc-card"><div class="idx">04</div><h5>Estimating Services</h5><p>Accurate material take-offs and estimating direct from the coordinated model.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad bg-panel">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <div class="why-img"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" class="img-fluid" alt="steel frame"></div>
+      </div>
+      <div class="col-lg-6 reveal delay-2">
+        <div class="kicker mb-2">Why Choose Us</div>
+        <h2 class="mb-3">20+ Years On The Shop Floor</h2>
+        <p class="text-secondary mb-4">Ironbeam Detailing Works operates across Architecture, Engineering, and Construction — built to keep your crews moving and your schedule intact.</p>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between fw-semibold small mb-1 text-white"><span>Detailing Accuracy</span><span class="text-yellow">96%</span></div>
+          <div class="progress"><div class="progress-bar" data-w="96" style="width:0%"></div></div>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between fw-semibold small mb-1 text-white"><span>Connection Design</span><span class="text-yellow">92%</span></div>
+          <div class="progress"><div class="progress-bar" data-w="92" style="width:0%"></div></div>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between fw-semibold small mb-1 text-white"><span>On-Time Delivery</span><span class="text-yellow">98%</span></div>
+          <div class="progress"><div class="progress-bar" data-w="98" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="kicker mb-2">How We Work</div>
+      <h2>Our Work Process</h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 reveal">
+        <div class="accordion" id="processAcc">
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#p1">01 — Request A Meeting</button></h2>
+            <div id="p1" class="accordion-collapse collapse show" data-bs-parent="#processAcc"><div class="accordion-body">Contact our team to scope your project, timeline, and requirements.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p2">02 — Receive A Custom Plan</button></h2>
+            <div id="p2" class="accordion-collapse collapse" data-bs-parent="#processAcc"><div class="accordion-body">We build a tailored proposal directly after our initial meeting.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p3">03 — Let's Make It Happen</button></h2>
+            <div id="p3" class="accordion-collapse collapse" data-bs-parent="#processAcc"><div class="accordion-body">Your project is our priority, delivered accurately and on schedule.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="numbers-strip py-5">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3 reveal"><div class="num">72</div><div class="lbl">Happy Clients</div></div>
+      <div class="col-6 col-md-3 reveal delay-1"><div class="num">20</div><div class="lbl">Years In Business</div></div>
+      <div class="col-6 col-md-3 reveal delay-2"><div class="num">145</div><div class="lbl">Total Jobs</div></div>
+      <div class="col-6 col-md-3 reveal delay-3"><div class="num">9100</div><div class="lbl">Dev. Hours</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="contact">
+  <div class="container">
+    <div class="row g-0 quote-panel overflow-hidden reveal">
+      <div class="col-lg-5 d-none d-lg-block" style="background:url('https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=900&q=80') center/cover;filter:grayscale(50%);"></div>
+      <div class="col-lg-7 p-5">
+        <h3 class="text-white">Get A Quote</h3>
+        <p class="text-secondary mb-4">Request a quote and our team will get back to you within one business day.</p>
+        <form id="quoteForm">
+          <div class="row g-3">
+            <div class="col-md-6"><input type="text" class="form-control form-control-lg" placeholder="Your Name *" required></div>
+            <div class="col-md-6"><input type="text" class="form-control form-control-lg" placeholder="Phone Number"></div>
+            <div class="col-md-6"><input type="email" class="form-control form-control-lg" placeholder="Your Email *" required></div>
+            <div class="col-md-6"><input type="text" class="form-control form-control-lg" placeholder="Subject"></div>
+            <div class="col-12"><textarea class="form-control form-control-lg" rows="4" placeholder="Message"></textarea></div>
+            <div class="col-12"><button type="submit" class="btn btn-yellow btn-lg px-4">Send Message <i class="bi bi-send ms-1"></i></button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad bg-panel" id="portfolio">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="kicker mb-2">Recent Work</div>
+      <h2>Our Portfolio</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal delay-1"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="Harborview Residences" data-img="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>Harborview Residences</span></div></div></div>
+      <div class="col-md-4 reveal delay-2"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="2nd Street Tower" data-img="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>2nd Street Tower</span></div></div></div>
+      <div class="col-md-4 reveal delay-3"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="Safety Training Campus" data-img="https://images.unsplash.com/photo-1590644365607-1c5a6a3d5b0e?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1590644365607-1c5a6a3d5b0e?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>Safety Training Campus</span></div></div></div>
+      <div class="col-md-4 reveal delay-1"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="Distribution Hub" data-img="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>Distribution Hub</span></div></div></div>
+      <div class="col-md-4 reveal delay-2"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="County High School" data-img="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>County High School</span></div></div></div>
+      <div class="col-md-4 reveal delay-3"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="44 Gay Street Offices" data-img="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>44 Gay Street Offices</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="portModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-panel border border-secondary-subtle rounded-2 overflow-hidden">
+      <div class="modal-header border-0"><h5 class="modal-title text-white" id="portModalTitle">Project</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+      <img id="portModalImg" src="" class="img-fluid" alt="project">
+    </div>
+  </div>
+</div>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="text-center mb-4 reveal">
+      <div class="kicker mb-2">Testimonials</div>
+      <h2>What Our Clients Say</h2>
+    </div>
+    <div id="testiCarousel" class="carousel slide reveal" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="testi-slide"><i class="bi bi-quote"></i><p class="fs-5 text-white">Ironbeam thinks like fabricators, not just detailers. RFIs dropped and our schedule finally held.</p><div class="text-yellow mb-2">★★★★★</div><h6 class="fw-bold mb-0 text-white">Marcus Webb</h6><span class="text-secondary small">Operations Lead, Webb Fabrication</span></div>
+        </div>
+        <div class="carousel-item">
+          <div class="testi-slide"><i class="bi bi-quote"></i><p class="fs-5 text-white">Every drawing arrived shop-ready. No surprises on the floor, no wasted steel.</p><div class="text-yellow mb-2">★★★★★</div><h6 class="fw-bold mb-0 text-white">Sara Kim</h6><span class="text-secondary small">Shop Foreman, Kim Steel Works</span></div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#testiCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testiCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+    </div>
+  </div>
+</section>
+
+<footer class="pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 pb-4">
+      <div class="col-lg-4">
+        <h5><i class="bi bi-cone-striped text-yellow"></i> IRONBEAM</h5>
+        <p class="small text-secondary">We believe in maintaining the highest levels of quality and integrity in everything we do — detailing built for the realities of fabrication.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-ic"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="social-ic"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-ic"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Site Map</h5>
+        <ul class="list-unstyled small"><li class="mb-2"><a href="#">Home</a></li><li class="mb-2"><a href="#">About Us</a></li><li class="mb-2"><a href="#">Careers</a></li></ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Services</h5>
+        <ul class="list-unstyled small"><li class="mb-2"><a href="#">Detailing</a></li><li class="mb-2"><a href="#">Connections</a></li><li class="mb-2"><a href="#">Estimating</a></li></ul>
+      </div>
+      <div class="col-lg-4">
+        <h5>Location</h5>
+        <p class="small text-secondary mb-0">12 Foundry Lane<br>Pittsburgh, PA, USA<br><br>hello@ironbeamworks.com</p>
+      </div>
+    </div>
+    <div class="border-top border-secondary-subtle pt-3 text-center small text-secondary">© 2026 Ironbeam Detailing Works. Design concept for demonstration purposes.</div>
+  </div>
+</footer>
+
+<div class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="submitToast" class="toast align-items-center text-bg-dark border border-warning" role="alert">
+    <div class="d-flex">
+      <div class="toast-body"><i class="bi bi-check-circle-fill text-yellow me-2"></i>Message sent! We'll be in touch shortly.</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const backToTop=document.getElementById('backToTop');
+  window.addEventListener('scroll',()=>{ backToTop.classList.toggle('show',window.scrollY>500); });
+  backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const bars=document.querySelectorAll('.progress-bar');
+  const barIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.width=e.target.dataset.w+'%'; barIO.unobserve(e.target); } });
+  },{threshold:.4});
+  bars.forEach(b=>barIO.observe(b));
+
+  const counters=document.querySelectorAll('.num');
+  const countIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target, target=+el.textContent;
+        let cur=0; const step=Math.max(1,Math.ceil(target/60));
+        el.textContent='0';
+        const tick=()=>{ cur=Math.min(target,cur+step); el.textContent=cur.toLocaleString(); if(cur<target) requestAnimationFrame(tick); };
+        tick();
+        countIO.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  counters.forEach(c=>countIO.observe(c));
+
+  const portModal=document.getElementById('portModal');
+  portModal.addEventListener('show.bs.modal',(ev)=>{
+    const trigger=ev.relatedTarget;
+    document.getElementById('portModalTitle').textContent=trigger.getAttribute('data-title');
+    document.getElementById('portModalImg').src=trigger.getAttribute('data-img');
+  });
+
+  document.getElementById('quoteForm').addEventListener('submit',(e)=>{
+    e.preventDefault();
+    new bootstrap.Toast(document.getElementById('submitToast')).show();
+    e.target.reset();
+  });
+</script>
+</body>
+</html>

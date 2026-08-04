@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skyline Detailing Group | Structural Steel</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --p1:#6d5bff;
+    --p2:#00c6ff;
+    --p3:#ff5b9e;
+    --ink:#161327;
+    --muted:#6c6785;
+    --surface:#f7f6fc;
+  }
+  body{font-family:'Outfit',sans-serif;color:var(--ink);background:#fff;}
+  h1,h2,h3,h4,.navbar-brand{font-family:'Outfit',sans-serif;font-weight:800;}
+  .grad-text{background:linear-gradient(100deg,var(--p1),var(--p2) 55%,var(--p3));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:shine 6s linear infinite;}
+  @keyframes shine{to{background-position:200% center;}}
+  .btn-grad{background:linear-gradient(120deg,var(--p1),var(--p3));border:none;color:#fff;font-weight:700;box-shadow:0 12px 26px rgba(109,91,255,.35);transition:transform .3s ease,box-shadow .3s ease;}
+  .btn-grad:hover{color:#fff;transform:translateY(-3px);box-shadow:0 16px 34px rgba(109,91,255,.5);}
+  .section-pad{padding:100px 0;}
+  .kicker{color:var(--p1);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.8rem;}
+  .bg-surface{background:var(--surface)!important;}
+
+  .reveal{opacity:0;transform:translateY(35px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal.delay-1{transition-delay:.1s;} .reveal.delay-2{transition-delay:.22s;} .reveal.delay-3{transition-delay:.34s;} .reveal.delay-4{transition-delay:.46s;}
+
+  .navbar{padding:16px 0;transition:all .3s ease;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);}
+  .navbar.scrolled{box-shadow:0 8px 30px rgba(22,19,39,.08);}
+  .navbar-brand .dot-mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--p1),var(--p3));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;margin-right:6px;}
+  .nav-link{font-weight:600;color:var(--ink)!important;}
+  .nav-link:hover{color:var(--p1)!important;}
+
+  .hero{min-height:94vh;display:flex;align-items:center;padding-top:100px;position:relative;overflow:hidden;}
+  .hero-glow{position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(90px);opacity:.35;z-index:0;}
+  .glow1{background:var(--p1);top:-100px;right:-100px;}
+  .glow2{background:var(--p2);bottom:-140px;left:-100px;}
+  .hero .container{position:relative;z-index:1;}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border-radius:30px;padding:9px 18px;font-weight:600;font-size:.85rem;color:var(--p1);}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--p2);animation:pulse 1.6s ease infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,198,255,.5);}50%{box-shadow:0 0 0 6px rgba(0,198,255,0);}}
+  .hero h1{font-size:3.4rem;line-height:1.12;}
+  .hero p.lead{color:var(--muted);max-width:520px;}
+  .hero-card{border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(22,19,39,.15);}
+  .hero-card img{width:100%;height:420px;object-fit:cover;}
+  .float-chip{position:absolute;background:#fff;border-radius:16px;padding:14px 18px;box-shadow:0 16px 36px rgba(22,19,39,.15);display:flex;align-items:center;gap:12px;}
+  .float-chip .ic{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;display:flex;align-items:center;justify-content:center;}
+  .float-chip b{display:block;}
+  .float-chip span{font-size:.72rem;color:var(--muted);}
+
+  /* Nav tabs for services */
+  .nav-tabs{border-bottom:none;gap:10px;justify-content:center;}
+  .nav-tabs .nav-link{border:1px solid #e6e3f2;border-radius:30px;color:var(--muted);font-weight:600;padding:10px 22px;}
+  .nav-tabs .nav-link.active{background:linear-gradient(120deg,var(--p1),var(--p3));color:#fff;border-color:transparent;}
+  .tab-pane .svc-panel{background:var(--surface);border-radius:20px;padding:40px;}
+  .tab-pane .ic-big{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:20px;}
+
+  .why-visual{border-radius:24px;overflow:hidden;position:relative;}
+  .why-visual img{filter:saturate(1.05);}
+  .badge-exp{position:absolute;bottom:20px;left:20px;background:#fff;border-radius:16px;padding:16px 22px;box-shadow:0 16px 36px rgba(22,19,39,.15);}
+  .badge-exp b{font-size:1.6rem;background:linear-gradient(120deg,var(--p1),var(--p3));-webkit-background-clip:text;background-clip:text;color:transparent;display:block;}
+  .progress{height:10px;border-radius:8px;background:var(--surface);}
+  .progress-bar{background:linear-gradient(90deg,var(--p1),var(--p2));border-radius:8px;}
+
+  .step-card{border-radius:20px;padding:34px 28px;background:var(--surface);height:100%;transition:transform .35s ease;}
+  .step-card:hover{transform:translateY(-8px);}
+  .step-num{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--p1),var(--p3));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:18px;}
+
+  .numbers-band{background:linear-gradient(110deg,var(--p1),var(--p3));color:#fff;}
+  .numbers-band .num{font-size:2.5rem;font-weight:800;}
+
+  .port-thumb{position:relative;border-radius:18px;overflow:hidden;height:230px;cursor:pointer;}
+  .port-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .port-thumb:hover img{transform:scale(1.12);}
+  .port-cap{position:absolute;inset:0;background:linear-gradient(0deg,rgba(22,19,39,.85),transparent 55%);display:flex;align-items:flex-end;padding:16px;opacity:0;transition:opacity .35s ease;}
+  .port-thumb:hover .port-cap{opacity:1;}
+  .port-cap span{color:#fff;font-weight:700;font-size:.9rem;}
+
+  .testi-slide{max-width:680px;margin:0 auto;text-align:center;}
+  .testi-slide i.bi-quote{font-size:2.2rem;color:var(--p1);}
+
+  .quote-wrap{border-radius:26px;overflow:hidden;background:var(--surface);}
+  .quote-form .form-control{border-radius:12px;border:1px solid #e6e3f2;padding:14px 16px;}
+  .quote-form .form-control:focus{border-color:var(--p1);box-shadow:0 0 0 .2rem rgba(109,91,255,.15);}
+
+  footer{background:var(--ink);color:#b9b4d3;}
+  footer h5{color:#fff;}
+  footer a{color:#b9b4d3;text-decoration:none;}
+  footer a:hover{color:var(--p2);}
+  .social-ic{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:inline-flex;align-items:center;justify-content:center;transition:all .3s ease;}
+  .social-ic:hover{background:linear-gradient(135deg,var(--p1),var(--p3));border-color:transparent;transform:translateY(-3px);}
+
+  .back-to-top{position:fixed;bottom:26px;right:26px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--p1),var(--p3));color:#fff;display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .3s ease;box-shadow:0 12px 26px rgba(109,91,255,.4);}
+  .back-to-top.show{opacity:1;pointer-events:all;}
+
+  .offcanvas .nav-link{padding:14px 0;font-weight:600;border-bottom:1px solid #eee;color:var(--ink);}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#"><span class="dot-mark">S</span>SKYLINE</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-none d-lg-flex">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link px-3" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#portfolio">Work</a></li>
+        <li class="nav-item"><a class="btn btn-grad rounded-pill px-4 ms-2" href="#contact">Get a Quote</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-end" id="mobileNav">
+  <div class="offcanvas-header"><h5>Menu</h5><button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li><a class="nav-link" href="#">Home</a></li>
+      <li><a class="nav-link" href="#about">About</a></li>
+      <li><a class="nav-link" href="#services">Services</a></li>
+      <li><a class="nav-link" href="#portfolio">Work</a></li>
+      <li class="mt-3"><a class="btn btn-grad rounded-pill w-100" href="#contact">Get a Quote</a></li>
+    </ul>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-glow glow1"></div>
+  <div class="hero-glow glow2"></div>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="pill mb-3"><span class="dot"></span>Skyline Detailing Group</span>
+        <h1 class="my-3">Structural Steel Detailing, <span class="grad-text">Elevated.</span></h1>
+        <p class="lead">We partner with fabricators and engineers to turn structural concepts into shop-ready steel — modeling, connection design, and estimating in one coordinated workflow.</p>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="#contact" class="btn btn-grad btn-lg rounded-pill px-4">Get a Quote <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="#services" class="btn btn-outline-dark btn-lg rounded-pill px-4">Explore Services</a>
+        </div>
+      </div>
+      <div class="col-lg-6 position-relative">
+        <div class="hero-card"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="skyline building"></div>
+        <div class="float-chip" style="top:-20px;right:-10px;"><div class="ic"><i class="bi bi-graph-up-arrow"></i></div><div><b>99.1%</b><span>Model Accuracy</span></div></div>
+        <div class="float-chip" style="bottom:-20px;left:-10px;"><div class="ic"><i class="bi bi-award"></i></div><div><b>15+ yrs</b><span>Experience</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="about">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="kicker mb-2">What We Do</div>
+      <h2 class="fw-bold">Services Built Around Your Workflow</h2>
+      <p class="text-muted mx-auto" style="max-width:640px;">Explore our detailing services below — click a tab to see how each one fits into your project.</p>
+    </div>
+    <ul class="nav nav-tabs mb-4 reveal" id="svcTabs" role="tablist">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1">Detailing</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2">Connections</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3">Joist & Deck</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab4">Estimating</button></li>
+    </ul>
+    <div class="tab-content reveal delay-1" id="services">
+      <div class="tab-pane fade show active" id="tab1">
+        <div class="svc-panel row align-items-center g-4">
+          <div class="col-md-7"><div class="ic-big"><i class="bi bi-building"></i></div><h4>Structural Steel Detailing</h4><p class="text-muted">Full 3D structural steel models with coordinated shop and erection drawings — built for main and miscellaneous steel packages.</p></div>
+          <div class="col-md-5"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=75" class="img-fluid rounded-4" alt="detailing"></div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab2">
+        <div class="svc-panel row align-items-center g-4">
+          <div class="col-md-7"><div class="ic-big"><i class="bi bi-diagram-3"></i></div><h4>Connection Design</h4><p class="text-muted">Engineered connection alternatives balancing safety, economy, and structural efficiency for every joint.</p></div>
+          <div class="col-md-5"><img src="https://images.unsplash.com/photo-1590644365607-1c5a6a3d5b0e?auto=format&fit=crop&w=600&q=75" class="img-fluid rounded-4" alt="connections"></div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab3">
+        <div class="svc-panel row align-items-center g-4">
+          <div class="col-md-7"><div class="ic-big"><i class="bi bi-grid-3x3-gap"></i></div><h4>Joist & Deck Detailing</h4><p class="text-muted">Girders, open web joists, and composite / non-composite deck systems, including accessories.</p></div>
+          <div class="col-md-5"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=75" class="img-fluid rounded-4" alt="joist deck"></div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab4">
+        <div class="svc-panel row align-items-center g-4">
+          <div class="col-md-7"><div class="ic-big"><i class="bi bi-calculator"></i></div><h4>Estimating Services</h4><p class="text-muted">Accurate take-off and estimating services built directly from the coordinated 3D model.</p></div>
+          <div class="col-md-5"><img src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=600&q=75" class="img-fluid rounded-4" alt="estimating"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad bg-surface">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal position-relative">
+        <div class="why-visual"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" class="img-fluid" alt="steel structure"></div>
+        <div class="badge-exp"><b>15+</b>Years</div>
+      </div>
+      <div class="col-lg-6 reveal delay-2">
+        <div class="kicker mb-2">Why Choose Us</div>
+        <h2 class="fw-bold mb-3">15+ Years of Combined Industry Experience</h2>
+        <p class="text-muted mb-4">Skyline Detailing Group blends deep structural expertise with a modern coordinated workflow — helping partners reduce RFIs and move projects faster.</p>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between fw-semibold small mb-1"><span>Modeling Accuracy</span><span>97%</span></div>
+          <div class="progress"><div class="progress-bar" data-w="97" style="width:0%"></div></div>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between fw-semibold small mb-1"><span>Connection Design</span><span>93%</span></div>
+          <div class="progress"><div class="progress-bar" data-w="93" style="width:0%"></div></div>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between fw-semibold small mb-1"><span>On-Time Delivery</span><span>99%</span></div>
+          <div class="progress"><div class="progress-bar" data-w="99" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="kicker mb-2">How We Work</div>
+      <h2 class="fw-bold">A Simple, Transparent Process</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 reveal delay-1"><div class="step-card"><div class="step-num">1</div><h5>Discovery Call</h5><p class="text-muted small mb-0">We scope your project, timeline, and deliverables in a short kickoff call.</p></div></div>
+      <div class="col-lg-4 reveal delay-2"><div class="step-card"><div class="step-num">2</div><h5>Model & Review</h5><p class="text-muted small mb-0">We build the model and share coordinated drawings for your review and markup.</p></div></div>
+      <div class="col-lg-4 reveal delay-3"><div class="step-card"><div class="step-num">3</div><h5>Deliver & Support</h5><p class="text-muted small mb-0">Final shop-ready packages delivered on schedule, with support through fabrication.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="numbers-band py-5">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3 reveal"><div class="num">96</div><div class="small text-uppercase">Happy Clients</div></div>
+      <div class="col-6 col-md-3 reveal delay-1"><div class="num">15</div><div class="small text-uppercase">Years Active</div></div>
+      <div class="col-6 col-md-3 reveal delay-2"><div class="num">130</div><div class="small text-uppercase">Total Jobs</div></div>
+      <div class="col-6 col-md-3 reveal delay-3"><div class="num">7400</div><div class="small text-uppercase">Development Hours</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="contact">
+  <div class="container">
+    <div class="quote-wrap reveal">
+      <div class="row g-0">
+        <div class="col-lg-5 d-none d-lg-block" style="background:url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=900&q=80') center/cover;"></div>
+        <div class="col-lg-7 p-5 quote-form">
+          <h3 class="fw-bold">Get a Quote</h3>
+          <p class="text-muted mb-4">Tell us about your project — we'll respond within one business day.</p>
+          <form id="quoteForm">
+            <div class="row g-3">
+              <div class="col-md-6"><input type="text" class="form-control form-control-lg" placeholder="Your Name *" required></div>
+              <div class="col-md-6"><input type="text" class="form-control form-control-lg" placeholder="Phone Number"></div>
+              <div class="col-md-6"><input type="email" class="form-control form-control-lg" placeholder="Your Email *" required></div>
+              <div class="col-md-6"><input type="text" class="form-control form-control-lg" placeholder="Project Type"></div>
+              <div class="col-12"><textarea class="form-control form-control-lg" rows="4" placeholder="Tell us about your project"></textarea></div>
+              <div class="col-12"><button type="submit" class="btn btn-grad btn-lg rounded-pill px-4">Send Inquiry <i class="bi bi-send ms-1"></i></button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad bg-surface" id="portfolio">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="kicker mb-2">Recent Work</div>
+      <h2 class="fw-bold">Selected Projects</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal delay-1"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="Harborview Residences" data-img="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>Harborview Residences</span></div></div></div>
+      <div class="col-md-4 reveal delay-2"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="2nd Street Tower" data-img="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>2nd Street Tower</span></div></div></div>
+      <div class="col-md-4 reveal delay-3"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="Safety Training Campus" data-img="https://images.unsplash.com/photo-1590644365607-1c5a6a3d5b0e?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1590644365607-1c5a6a3d5b0e?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>Safety Training Campus</span></div></div></div>
+      <div class="col-md-4 reveal delay-1"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="Distribution Hub" data-img="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>Distribution Hub</span></div></div></div>
+      <div class="col-md-4 reveal delay-2"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="County High School" data-img="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>County High School</span></div></div></div>
+      <div class="col-md-4 reveal delay-3"><div class="port-thumb" data-bs-toggle="modal" data-bs-target="#portModal" data-title="44 Gay Street Offices" data-img="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=900&q=75"><img src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=500&q=70"><div class="port-cap"><span>44 Gay Street Offices</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="portModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 rounded-4 overflow-hidden">
+      <div class="modal-header border-0"><h5 class="modal-title" id="portModalTitle">Project</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <img id="portModalImg" src="" class="img-fluid" alt="project">
+    </div>
+  </div>
+</div>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="text-center mb-4 reveal">
+      <div class="kicker mb-2">Testimonials</div>
+      <h2 class="fw-bold">Trusted By Fabricators</h2>
+    </div>
+    <div id="testiCarousel" class="carousel slide reveal" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="testi-slide"><i class="bi bi-quote"></i><p class="fs-5">Skyline's coordinated models cut our RFIs in half. Having modeling, connections, and estimating under one roof changed how fast we moved from bid to fabrication.</p><div class="text-warning mb-2">★★★★★</div><h6 class="fw-bold mb-0">Daniel Ortega</h6><span class="text-muted small">Project Director, Ortega Steel Co.</span></div>
+        </div>
+        <div class="carousel-item">
+          <div class="testi-slide"><i class="bi bi-quote"></i><p class="fs-5">Clean models, clear communication, and every deadline hit. Exactly what our fast-moving schedule needed.</p><div class="text-warning mb-2">★★★★★</div><h6 class="fw-bold mb-0">Priya Nair</h6><span class="text-muted small">Project Manager, Nair Fabrication</span></div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#testiCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon" style="filter:invert(1) grayscale(1);"></span></button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testiCarousel" data-bs-slide="next"><span class="carousel-control-next-icon" style="filter:invert(1) grayscale(1);"></span></button>
+    </div>
+  </div>
+</section>
+
+<footer class="pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 pb-4">
+      <div class="col-lg-4">
+        <h5 class="d-flex align-items-center"><span class="dot-mark">S</span>SKYLINE</h5>
+        <p class="small">A structural detailing studio helping fabricators and contractors build faster, with fewer surprises in the field.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-ic"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="social-ic"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-ic"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Company</h5>
+        <ul class="list-unstyled small"><li class="mb-2"><a href="#">About Us</a></li><li class="mb-2"><a href="#">Careers</a></li><li class="mb-2"><a href="#">Case Studies</a></li></ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Services</h5>
+        <ul class="list-unstyled small"><li class="mb-2"><a href="#">Detailing</a></li><li class="mb-2"><a href="#">Connections</a></li><li class="mb-2"><a href="#">Estimating</a></li></ul>
+      </div>
+      <div class="col-lg-4">
+        <h5>Studio</h5>
+        <p class="small mb-0">4th Floor, Innovation Tower<br>Bengaluru, India<br><br>hello@skylinedetailing.com</p>
+      </div>
+    </div>
+    <div class="border-top border-secondary-subtle pt-3 text-center small">© 2026 Skyline Detailing Group. Design concept for demonstration purposes.</div>
+  </div>
+</footer>
+
+<div class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="submitToast" class="toast align-items-center text-bg-dark border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body"><i class="bi bi-check-circle-fill text-info me-2"></i>Message sent! We'll be in touch shortly.</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const navEl=document.getElementById('mainNav');
+  const backToTop=document.getElementById('backToTop');
+  window.addEventListener('scroll',()=>{
+    navEl.classList.toggle('scrolled',window.scrollY>40);
+    backToTop.classList.toggle('show',window.scrollY>500);
+  });
+  backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const bars=document.querySelectorAll('.progress-bar');
+  const barIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.width=e.target.dataset.w+'%'; barIO.unobserve(e.target); } });
+  },{threshold:.4});
+  bars.forEach(b=>barIO.observe(b));
+
+  const counters=document.querySelectorAll('.num');
+  const countIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target, target=+el.textContent;
+        let cur=0; const step=Math.max(1,Math.ceil(target/60));
+        el.textContent='0';
+        const tick=()=>{ cur=Math.min(target,cur+step); el.textContent=cur.toLocaleString(); if(cur<target) requestAnimationFrame(tick); };
+        tick();
+        countIO.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  counters.forEach(c=>countIO.observe(c));
+
+  const portModal=document.getElementById('portModal');
+  portModal.addEventListener('show.bs.modal',(ev)=>{
+    const trigger=ev.relatedTarget;
+    document.getElementById('portModalTitle').textContent=trigger.getAttribute('data-title');
+    document.getElementById('portModalImg').src=trigger.getAttribute('data-img');
+  });
+
+  document.getElementById('quoteForm').addEventListener('submit',(e)=>{
+    e.preventDefault();
+    new bootstrap.Toast(document.getElementById('submitToast')).show();
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
