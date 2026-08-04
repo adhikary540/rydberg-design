@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rydberg Engineering | Steel Detailing — Industrial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0c;
+    --panel:#131316;
+    --panel2:#1a1a1f;
+    --amber:#ff8a00;
+    --steel:#8fa3b3;
+    --line:#26262c;
+    --white:#f2f2f0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Oswald',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;}
+  .mono{font-family:'Space Mono',monospace;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;filter:grayscale(35%) contrast(1.05);}
+  .container{width:min(1200px,92%);margin:0 auto;}
+  h1,h2,h3,h4{font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+
+  /* diagonal hazard stripe divider */
+  .stripe{height:10px;background:repeating-linear-gradient(45deg,var(--amber) 0 14px,#111 14px 28px);}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal.d1{transition-delay:.1s;}
+  .reveal.d2{transition-delay:.2s;}
+  .reveal.d3{transition-delay:.3s;}
+  .reveal.d4{transition-delay:.4s;}
+
+  /* ---------- Header ---------- */
+  header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(10,10,12,.85);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+  header .container{display:flex;align-items:center;justify-content:space-between;padding:16px 0;}
+  .logo{font-family:'Space Mono',monospace;font-weight:700;font-size:1.3rem;color:#fff;display:flex;align-items:center;gap:10px;}
+  .logo .bolt{width:10px;height:10px;background:var(--amber);transform:rotate(45deg);}
+  .logo em{font-style:normal;color:var(--amber);}
+  nav ul{display:flex;gap:0;}
+  nav a{display:block;padding:10px 20px;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--steel);border-left:1px solid var(--line);transition:all .3s ease;}
+  nav a:hover{color:var(--amber);background:var(--panel2);}
+  .nav-cta{background:var(--amber);color:#0a0a0c!important;padding:12px 24px;font-weight:700;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;clip-path:polygon(10px 0,100% 0,100% 100%,0 100%);}
+  .burger{display:none;flex-direction:column;gap:5px;}
+  .burger span{width:24px;height:2px;background:#fff;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;padding-top:70px;
+    background:linear-gradient(180deg,rgba(10,10,12,.55),rgba(10,10,12,.92)),
+      url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1600&q=80') center/cover;
+  }
+  .hero:after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,138,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,138,0,.05) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+  .hero-content{position:relative;z-index:2;max-width:760px;}
+  .tagline{font-family:'Space Mono',monospace;color:var(--amber);font-size:.85rem;letter-spacing:4px;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+  .tagline .dash{width:40px;height:2px;background:var(--amber);}
+  .hero h1{font-size:4.2rem;line-height:1.05;color:#fff;margin-bottom:24px;}
+  .hero h1 .typed{color:var(--amber);border-right:4px solid var(--amber);padding-right:6px;animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{border-color:transparent;}}
+  .hero p{color:var(--steel);font-size:1.05rem;max-width:520px;margin-bottom:36px;line-height:1.7;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    font-family:'Space Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:.85rem;
+    padding:16px 32px;background:var(--amber);color:#0a0a0c;clip-path:polygon(14px 0,100% 0,100% 100%,0 100%);
+    transition:transform .3s,box-shadow .3s;border:none;cursor:pointer;display:inline-block;
+  }
+  .btn:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--white);}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid var(--steel);clip-path:none;}
+  .btn.ghost:hover{border-color:var(--amber);color:var(--amber);box-shadow:none;transform:none;}
+  .hero-meta{position:absolute;right:0;bottom:60px;z-index:2;font-family:'Space Mono',monospace;color:var(--steel);font-size:.75rem;writing-mode:vertical-rl;letter-spacing:3px;text-transform:uppercase;display:none;}
+
+  /* ---------- Section common ---------- */
+  section{padding:110px 0;}
+  .sec-label{font-family:'Space Mono',monospace;color:var(--amber);font-size:.8rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+  .sec-label .dash{width:32px;height:2px;background:var(--amber);}
+  .sec-title{font-size:2.6rem;color:#fff;margin-bottom:20px;max-width:700px;}
+  .sec-sub{color:var(--steel);max-width:640px;line-height:1.8;margin-bottom:56px;font-size:.98rem;}
+
+  /* ---------- Services grid ---------- */
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .svc{background:var(--panel);padding:38px 28px;transition:background .4s ease;position:relative;}
+  .svc:hover{background:var(--panel2);}
+  .svc .idx{font-family:'Space Mono',monospace;color:var(--amber);font-size:.8rem;margin-bottom:20px;}
+  .svc h4{font-size:1.1rem;color:#fff;margin-bottom:14px;}
+  .svc p{color:var(--steel);font-size:.88rem;line-height:1.7;}
+  .svc .arrow{position:absolute;top:32px;right:24px;color:var(--amber);font-size:1.2rem;opacity:0;transform:translateX(-8px);transition:all .3s ease;}
+  .svc:hover .arrow{opacity:1;transform:translateX(0);}
+
+  /* ---------- Why / stats ---------- */
+  .why{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+  .why-img{position:relative;}
+  .why-img img{border:1px solid var(--line);filter:grayscale(60%) contrast(1.1);}
+  .why-img .frame{position:absolute;top:20px;left:20px;right:-20px;bottom:-20px;border:2px solid var(--amber);z-index:-1;}
+  .bar-item{margin-bottom:26px;}
+  .bar-head{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.82rem;margin-bottom:10px;color:var(--steel);text-transform:uppercase;letter-spacing:1px;}
+  .bar-head b{color:#fff;}
+  .bar-track{height:6px;background:#26262c;position:relative;}
+  .bar-fill{height:100%;width:0;background:var(--amber);transition:width 1.5s cubic-bezier(.16,1,.3,1);}
+
+  /* ---------- Process ---------- */
+  .process{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .step{background:var(--panel);padding:44px 30px;text-align:left;transition:background .3s;}
+  .step:hover{background:var(--panel2);}
+  .step .num{font-family:'Space Mono',monospace;font-size:2.8rem;color:var(--amber);opacity:.4;margin-bottom:18px;}
+  .step h4{color:#fff;margin-bottom:12px;font-size:1.1rem;}
+  .step p{color:var(--steel);font-size:.88rem;line-height:1.7;}
+
+  /* ---------- Numbers ---------- */
+  .numbers{background:var(--amber);color:#0a0a0c;}
+  .num-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:left;}
+  .num-grid > div{border-left:2px solid rgba(10,10,12,.25);padding:0 24px;}
+  .num-grid > div:first-child{border-left:none;}
+  .num-grid .n{font-family:'Space Mono',monospace;font-size:3rem;font-weight:700;}
+  .num-grid .l{font-size:.82rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;}
+
+  /* ---------- Portfolio ---------- */
+  .grid-4-port{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .port-item{position:relative;height:230px;overflow:hidden;background:#000;}
+  .port-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,filter .4s ease;filter:grayscale(80%) brightness(.7);}
+  .port-item:hover img{transform:scale(1.1);filter:grayscale(0%) brightness(.5);}
+  .port-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;}
+  .port-overlay .tag{font-family:'Space Mono',monospace;color:var(--amber);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;opacity:0;transform:translateY(10px);transition:all .4s ease .05s;}
+  .port-overlay span.title{color:#fff;font-weight:600;font-size:.95rem;}
+  .port-item:hover .tag{opacity:1;transform:translateY(0);}
+
+  /* ---------- Testimonial ---------- */
+  .testi{text-align:center;}
+  .testi-card{max-width:720px;margin:0 auto;border:1px solid var(--line);padding:60px;position:relative;}
+  .testi-card:before{content:'"';position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:6rem;color:var(--amber);font-family:'Space Mono',monospace;opacity:.5;}
+  .testi-card p{font-size:1.15rem;line-height:1.8;color:var(--white);margin-bottom:24px;}
+  .stars{color:var(--amber);letter-spacing:4px;margin-bottom:14px;}
+  .who{font-family:'Space Mono',monospace;color:var(--steel);font-size:.85rem;text-transform:uppercase;letter-spacing:1px;}
+
+  /* ---------- Quote ---------- */
+  .quote-wrap{border:1px solid var(--line);display:grid;grid-template-columns:1fr 1.2fr;}
+  .quote-img{background:url('https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=900&q=80') center/cover;filter:grayscale(50%);min-height:100%;}
+  .quote-form{padding:56px;background:var(--panel);}
+  .quote-form h3{color:#fff;font-size:2rem;margin-bottom:10px;}
+  .quote-form p{color:var(--steel);margin-bottom:30px;font-family:'Space Mono',monospace;font-size:.85rem;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .quote-form input,.quote-form textarea{
+    width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--line);color:#fff;
+    font-family:'Space Mono',monospace;font-size:.85rem;outline:none;transition:border .3s;
+  }
+  .quote-form input:focus,.quote-form textarea:focus{border-color:var(--amber);}
+  .quote-form textarea{min-height:100px;margin-bottom:22px;resize:vertical;}
+
+  /* ---------- Footer ---------- */
+  footer{background:#000;padding:70px 0 24px;border-top:1px solid var(--line);}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:50px;}
+  footer h4{color:#fff;font-size:.95rem;margin-bottom:20px;letter-spacing:1.5px;}
+  footer p{color:var(--steel);font-size:.85rem;line-height:1.8;}
+  footer ul li{color:var(--steel);font-size:.85rem;margin-bottom:10px;cursor:pointer;transition:color .3s;font-family:'Space Mono',monospace;}
+  footer ul li:hover{color:var(--amber);}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:20px;text-align:center;font-family:'Space Mono',monospace;font-size:.75rem;color:var(--steel);}
+
+  .totop{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background:var(--amber);color:#0a0a0c;display:flex;align-items:center;justify-content:center;cursor:pointer;clip-path:polygon(10px 0,100% 0,100% 100%,0 100%);opacity:0;pointer-events:none;transition:opacity .3s;z-index:999;font-weight:700;}
+  .totop.show{opacity:1;pointer-events:all;}
+
+  @media(max-width:1000px){
+    .svc-grid,.grid-4-port,.num-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid,.process,.quote-wrap{grid-template-columns:1fr;}
+    nav,.nav-cta{display:none;}
+    .burger{display:flex;}
+    .hero h1{font-size:2.6rem;}
+    .num-grid>div{border-left:none;border-top:2px solid rgba(10,10,12,.25);padding:16px 0 0;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <header id="header">
+    <div class="container">
+      <div class="logo"><span class="bolt"></span>RYDBERG <em>ENG.</em></div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="nav-cta">Get Quote</a>
+      <div class="burger"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="tagline"><span class="dash"></span>RYDBERG ENGINEERING PVT LTD</div>
+      <h1>Dealing Dexterously In<br><span class="typed">Steel Detailing</span></h1>
+      <p>Structural steel detailing, connection design, and estimating services engineered for precision, forged for the future.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn">Contact Us</a>
+        <a href="#portfolio" class="btn ghost">View Work</a>
+      </div>
+    </div>
+  </section>
+  <div class="stripe"></div>
+
+  <section id="about">
+    <div class="container">
+      <div class="sec-label reveal"><span class="dash"></span>What We Do</div>
+      <h2 class="sec-title reveal">One Goal One Passion — Synchronize With Future</h2>
+      <p class="sec-sub reveal">Specialist engineering and architectural service & solutions company providing clients across a range of engineering & architectural segments — improving efficiency, footprint, and construction flow.</p>
+    </div>
+    <div class="svc-grid" id="services">
+      <div class="svc reveal d1"><div class="idx mono">01</div><h4>Structural Steel Detailing</h4><p>3D modeling and structural steel detailing for main and miscellaneous steel — connection, shop and erection drawings.</p><div class="arrow">→</div></div>
+      <div class="svc reveal d2"><div class="idx mono">02</div><h4>Engineering & Connection Design</h4><p>Connection alternatives engineered for the safest, most economical and structurally efficient outcome.</p><div class="arrow">→</div></div>
+      <div class="svc reveal d3"><div class="idx mono">03</div><h4>Steel Joist & Deck Detailing</h4><p>Girders, open web joist, decking — Roof Deck, Composite Roof, Non-Composite Roof Decks and accessories.</p><div class="arrow">→</div></div>
+      <div class="svc reveal d4"><div class="idx mono">04</div><h4>Estimating Services</h4><p>Accurate estimating and take-off services from material take-offs to Structural and Miscellaneous steel.</p><div class="arrow">→</div></div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="container why-grid">
+      <div class="why-img reveal">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="steel building">
+        <div class="frame"></div>
+      </div>
+      <div class="reveal d2">
+        <div class="sec-label"><span class="dash"></span>Why Choose Us</div>
+        <h2 class="sec-title" style="font-size:2.2rem;">20+ Years of Combined Industry Experience</h2>
+        <p class="sec-sub" style="margin-bottom:36px;">Rydberg Engineering Private Limited operates in the AEC industry across Architecture, Engineering and Construction — the fastest way to grow your business with a leader in technology.</p>
+        <div class="bar-item"><div class="bar-head"><span>Steel Detailing</span><b>94%</b></div><div class="bar-track"><div class="bar-fill" data-w="94"></div></div></div>
+        <div class="bar-item"><div class="bar-head"><span>Engineering Design</span><b>91%</b></div><div class="bar-track"><div class="bar-fill" data-w="91"></div></div></div>
+        <div class="bar-item"><div class="bar-head"><span>Estimating Services</span><b>100%</b></div><div class="bar-track"><div class="bar-fill" data-w="100"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="sec-label reveal"><span class="dash"></span>How We Work</div>
+      <h2 class="sec-title reveal">Check Out Our Work Process</h2>
+    </div>
+    <div class="process">
+      <div class="step reveal d1"><div class="num mono">01</div><h4>Request A Meeting</h4><p>Contact our sales team to scope your project and requirements.</p></div>
+      <div class="step reveal d2"><div class="num mono">02</div><h4>Receive A Custom Plan</h4><p>Get a tailored plan built directly from the initial meeting.</p></div>
+      <div class="step reveal d3"><div class="num mono">03</div><h4>Let's Make It Happen</h4><p>Your project becomes our priority, delivered on schedule.</p></div>
+    </div>
+  </section>
+
+  <section class="numbers">
+    <div class="container num-grid">
+      <div class="reveal"><div class="n mono" data-count="5">0</div><div class="l">Happy Clients</div></div>
+      <div class="reveal d1"><div class="n mono" data-count="20">0</div><div class="l">Years In Business</div></div>
+      <div class="reveal d2"><div class="n mono" data-count="90">0</div><div class="l">Total Jobs</div></div>
+      <div class="reveal d3"><div class="n mono" data-count="7320">0</div><div class="l">Development Hours</div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="quote-wrap reveal">
+        <div class="quote-img"></div>
+        <div class="quote-form">
+          <h3>Get A Quote</h3>
+          <p class="mono">// request-a-quote.submit()</p>
+          <form onsubmit="return false;">
+            <div class="form-row"><input placeholder="Your Name *" required><input placeholder="Phone Number"></div>
+            <div class="form-row"><input placeholder="Your Email *" type="email" required><input placeholder="Subject"></div>
+            <textarea placeholder="Message"></textarea>
+            <button class="btn" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <div class="sec-label reveal"><span class="dash"></span>Recent Work</div>
+      <h2 class="sec-title reveal">Our Portfolio</h2>
+    </div>
+    <div class="grid-4-port">
+      <div class="port-item reveal d1"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><div class="tag mono">Residential</div><span class="title">Willow Valley Apartments</span></div></div>
+      <div class="port-item reveal d2"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><div class="tag mono">Philadelphia, PA</div><span class="title">814 N 2nd St</span></div></div>
+      <div class="port-item reveal d3"><img src="https://images.unsplash.com/photo-1590644365607-1c5a6a3d5b0e?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><div class="tag mono">Public Safety</div><span class="title">Washington County Training</span></div></div>
+      <div class="port-item reveal d4"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><div class="tag mono">Industrial</div><span class="title">Rajbhog Foods</span></div></div>
+      <div class="port-item reveal d1"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><div class="tag mono">Education</div><span class="title">Howard County High</span></div></div>
+      <div class="port-item reveal d2"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><div class="tag mono">Education</div><span class="title">Calverton Elementary</span></div></div>
+      <div class="port-item reveal d3"><img src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><div class="tag mono">Commercial</div><span class="title">44 West Gay Street</span></div></div>
+      <div class="port-item reveal d4"><img src="https://images.unsplash.com/photo-1462899006636-339e08d1844e?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><div class="tag mono">Government</div><span class="title">Nevada Joint Training</span></div></div>
+    </div>
+  </section>
+
+  <section class="testi">
+    <div class="container">
+      <div class="sec-label reveal" style="justify-content:center;"><span class="dash"></span>Testimonial<span class="dash"></span></div>
+      <h2 class="sec-title reveal" style="margin:0 auto 50px;">What Our Customers Are Saying</h2>
+      <div class="testi-card reveal">
+        <p>"I chose Rydberg because I simply could not find any other provider that offered all the tools I need under one umbrella. Thanks for the long-term vision of the team and the experience which comes hand to hand in day-to-day progress of the job."</p>
+        <div class="stars">★★★★★</div>
+        <div class="who">— Offered Approval, Client</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div class="logo" style="margin-bottom:16px;"><span class="bolt"></span>RYDBERG <em>ENG.</em></div>
+          <p>We believe in maintaining the highest levels of quality and integrity in everything we do — providing customer-centric solutions to the highest standards of excellence.</p>
+        </div>
+        <div><h4>Site Map</h4><ul><li>Home</li><li>About Us</li><li>Quality Policy</li><li>QC Certification</li><li>Career</li></ul></div>
+        <div><h4>Credentials</h4><ul><li>AISC Member</li><li>NCSEA</li><li>RVJ Group</li></ul></div>
+        <div><h4>Location</h4><p>Ground Floor, Salt Lake Sector V<br>Kolkata, West Bengal, India<br><br>sales@rydbergengineering.com</p></div>
+      </div>
+      <div class="foot-bottom">© 2026 RYDBERG ENGINEERING PVT LTD — DESIGN CONCEPT FOR DEMONSTRATION</div>
+    </div>
+  </footer>
+
+  <div class="totop" id="totop">↑</div>
+
+<script>
+  const header=document.getElementById('header');
+  const totop=document.getElementById('totop');
+  window.addEventListener('scroll',()=>{
+    totop.classList.toggle('show',window.scrollY>500);
+  });
+  totop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const bars=document.querySelectorAll('.bar-fill');
+  const barIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.style.width=e.target.dataset.w+'%'; barIO.unobserve(e.target); }
+    });
+  },{threshold:.4});
+  bars.forEach(b=>barIO.observe(b));
+
+  const counters=document.querySelectorAll('.n[data-count]');
+  const countIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target, target=+el.dataset.count;
+        let cur=0; const step=Math.max(1,Math.ceil(target/60));
+        const tick=()=>{ cur=Math.min(target,cur+step); el.textContent=cur.toLocaleString(); if(cur<target) requestAnimationFrame(tick); };
+        tick();
+        countIO.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  counters.forEach(c=>countIO.observe(c));
+</script>
+</body>
+</html>
