@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vertex Steel Studio | Structural Detailing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e6e9ee;
+    --text:#2c3644;
+    --muted:#6f7a8a;
+    --accent:#3d6bff;
+    --accent2:#00c49a;
+    --shadow-d:#c2c7cf;
+    --shadow-l:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  .container{width:min(1180px,92%);margin:0 auto;}
+  h1,h2,h3,h4{font-weight:800;}
+
+  .neu-out{background:var(--bg);border-radius:20px;box-shadow:9px 9px 18px var(--shadow-d),-9px -9px 18px var(--shadow-l);}
+  .neu-in{background:var(--bg);border-radius:16px;box-shadow:inset 6px 6px 12px var(--shadow-d),inset -6px -6px 12px var(--shadow-l);}
+  .neu-btn{background:var(--bg);border-radius:14px;box-shadow:6px 6px 12px var(--shadow-d),-6px -6px 12px var(--shadow-l);transition:box-shadow .25s ease,transform .25s ease;}
+  .neu-btn:hover{box-shadow:3px 3px 8px var(--shadow-d),-3px -3px 8px var(--shadow-l);transform:translateY(1px);}
+  .neu-btn:active{box-shadow:inset 4px 4px 8px var(--shadow-d),inset -4px -4px 8px var(--shadow-l);}
+
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal.d1{transition-delay:.1s;} .reveal.d2{transition-delay:.22s;} .reveal.d3{transition-delay:.34s;} .reveal.d4{transition-delay:.46s;}
+
+  /* ---------- Header ---------- */
+  header{position:fixed;top:16px;left:0;width:100%;z-index:1000;}
+  header .container{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.2rem;}
+  .logo .mark{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;}
+  nav ul{display:flex;gap:6px;}
+  nav a{padding:10px 18px;border-radius:12px;font-size:.88rem;font-weight:700;color:var(--muted);transition:color .3s ease;}
+  nav a:hover, nav a.active{color:var(--accent);}
+  .nav-cta{padding:12px 24px;font-weight:700;font-size:.85rem;color:var(--accent);}
+  .burger{display:none;flex-direction:column;gap:5px;padding:12px;}
+  .burger span{width:20px;height:2px;background:var(--text);}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:100vh;display:flex;align-items:center;padding-top:110px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;}
+  .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;font-size:.8rem;font-weight:700;color:var(--accent);margin-bottom:26px;}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);}
+  .hero h1{font-size:3.3rem;line-height:1.12;margin-bottom:22px;letter-spacing:-1px;}
+  .hero h1 .accent{color:var(--accent);}
+  .hero p{color:var(--muted);font-size:1.05rem;line-height:1.75;max-width:460px;margin-bottom:34px;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .btn{
+    padding:17px 30px;border-radius:16px;font-weight:700;font-size:.92rem;border:none;cursor:pointer;
+    color:#fff;background:linear-gradient(135deg,var(--accent),#5c8bff);box-shadow:6px 6px 14px var(--shadow-d),-4px -4px 10px var(--shadow-l);
+    transition:transform .3s ease;display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn:hover{transform:translateY(-3px);}
+  .icon-btn{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.1rem;cursor:pointer;}
+  .hero-visual{padding:26px;position:relative;}
+  .hero-visual .frame{border-radius:16px;overflow:hidden;height:400px;}
+  .hero-visual .frame img{width:100%;height:100%;object-fit:cover;}
+  .stat-chip{position:absolute;padding:16px 20px;display:flex;align-items:center;gap:12px;border-radius:16px;}
+  .stat-chip.c1{top:0;right:-14px;}
+  .stat-chip.c2{bottom:0;left:-14px;}
+  .stat-chip .ic{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent2),#3de0b8);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;}
+  .stat-chip b{display:block;font-size:1.05rem;}
+  .stat-chip span{font-size:.72rem;color:var(--muted);}
+
+  /* ---------- Section common ---------- */
+  section{padding:110px 0;}
+  .kicker{color:var(--accent);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.78rem;margin-bottom:12px;text-align:center;}
+  .sec-title{text-align:center;font-size:2.3rem;margin-bottom:16px;letter-spacing:-.5px;}
+  .sec-sub{text-align:center;color:var(--muted);max-width:600px;margin:0 auto 56px;line-height:1.75;font-size:.98rem;}
+
+  /* ---------- Services ---------- */
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .card{padding:34px 26px;transition:transform .35s ease;}
+  .card:hover{transform:translateY(-8px);}
+  .card .icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;color:var(--accent);}
+  .card h4{font-size:1.1rem;margin-bottom:12px;}
+  .card p{color:var(--muted);font-size:.88rem;line-height:1.65;font-weight:500;}
+
+  /* ---------- Why ---------- */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+  .why-visual{padding:20px;}
+  .why-visual .frame{border-radius:14px;overflow:hidden;height:380px;}
+  .why-visual .frame img{width:100%;height:100%;object-fit:cover;filter:saturate(.9);}
+  .why h2{font-size:2.1rem;margin-bottom:18px;letter-spacing:-.5px;}
+  .why p.lead{color:var(--muted);line-height:1.8;margin-bottom:34px;font-weight:500;}
+  .bar-item{margin-bottom:24px;}
+  .bar-head{display:flex;justify-content:space-between;margin-bottom:10px;font-weight:700;font-size:.9rem;}
+  .bar-track{height:14px;border-radius:10px;padding:2px;}
+  .bar-fill{height:100%;border-radius:8px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1.6s cubic-bezier(.16,1,.3,1);}
+
+  /* ---------- Process ---------- */
+  .process{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .step{padding:38px 30px;text-align:center;transition:transform .35s ease;}
+  .step:hover{transform:translateY(-6px);}
+  .step .num{width:68px;height:68px;border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem;color:var(--accent);}
+  .step h4{margin-bottom:10px;font-size:1.1rem;}
+  .step p{color:var(--muted);font-size:.88rem;line-height:1.6;font-weight:500;}
+
+  /* ---------- Numbers ---------- */
+  .numbers-card{padding:50px 40px;}
+  .num-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:20px;}
+  .num-grid .n-wrap{width:100px;height:100px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;}
+  .num-grid .n{font-size:1.7rem;font-weight:800;color:var(--accent);}
+  .num-grid .l{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+
+  /* ---------- Portfolio ---------- */
+  .grid-4-port{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .port-item{padding:10px;}
+  .port-frame{position:relative;border-radius:14px;overflow:hidden;height:200px;}
+  .port-frame img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .port-item:hover .port-frame img{transform:scale(1.12);}
+  .port-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(44,54,68,.85),transparent 60%);display:flex;align-items:flex-end;padding:16px;opacity:0;transition:opacity .4s ease;}
+  .port-item:hover .port-overlay{opacity:1;}
+  .port-overlay span{color:#fff;font-weight:700;font-size:.9rem;}
+
+  /* ---------- Testimonial ---------- */
+  .testi-card{max-width:680px;margin:0 auto;padding:50px;text-align:center;}
+  .testi-card .quote-mark{width:60px;height:60px;border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--accent);}
+  .testi-card p{font-size:1.05rem;line-height:1.8;margin-bottom:20px;font-weight:500;}
+  .stars{color:#ffb400;letter-spacing:3px;margin-bottom:10px;}
+  .who span{display:block;font-size:.8rem;color:var(--muted);font-weight:500;}
+  .who{font-weight:700;}
+
+  /* ---------- Quote ---------- */
+  .quote-wrap{padding:16px;display:grid;grid-template-columns:1fr 1.2fr;gap:16px;}
+  .quote-img{background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80') center/cover;border-radius:16px;filter:saturate(.85);}
+  .quote-form{padding:40px;}
+  .quote-form h3{font-size:1.8rem;margin-bottom:6px;}
+  .quote-form p{color:var(--muted);margin-bottom:26px;font-size:.9rem;font-weight:500;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .quote-form input,.quote-form textarea{
+    width:100%;padding:15px 18px;border-radius:12px;border:none;background:var(--bg);color:var(--text);
+    font-family:inherit;outline:none;box-shadow:inset 4px 4px 8px var(--shadow-d),inset -4px -4px 8px var(--shadow-l);
+  }
+  .quote-form input::placeholder,.quote-form textarea::placeholder{color:var(--muted);}
+  .quote-form textarea{min-height:90px;margin-bottom:22px;resize:vertical;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:70px 0 24px;}
+  .foot-wrap{padding:50px 46px 24px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:44px;}
+  footer h4{margin-bottom:18px;font-size:1rem;}
+  footer p{color:var(--muted);font-size:.88rem;line-height:1.8;font-weight:500;}
+  footer ul li{color:var(--muted);font-size:.88rem;margin-bottom:10px;cursor:pointer;transition:color .3s;font-weight:600;}
+  footer ul li:hover{color:var(--accent);}
+  .foot-bottom{border-top:1px solid var(--shadow-d);padding-top:20px;text-align:center;font-size:.8rem;color:var(--muted);}
+
+  .totop{position:fixed;bottom:30px;right:30px;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;z-index:999;color:var(--accent);font-weight:800;}
+  .totop.show{opacity:1;pointer-events:all;}
+
+  @media(max-width:1000px){
+    .hero-grid,.why-grid,.quote-wrap{grid-template-columns:1fr;}
+    .grid-4,.grid-4-port,.num-grid{grid-template-columns:repeat(2,1fr);}
+    .process{grid-template-columns:1fr;}
+    nav,.nav-cta{display:none;}
+    .burger{display:flex;}
+    .hero h1{font-size:2.3rem;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .foot-wrap{padding:30px 22px 24px;}
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="container neu-out">
+      <div class="logo"><span class="mark neu-in">V</span>VERTEX</div>
+      <nav>
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Work</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="nav-cta">Get Started →</a>
+      <div class="burger"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="pill neu-in"><span class="dot"></span>Vertex Steel Studio</div>
+        <h1>Structural Steel Detailing, <span class="accent">Made Effortless</span></h1>
+        <p>We give fabricators and engineers a calmer way to move from concept to shop-ready steel — clean models, coordinated connections, accurate estimates.</p>
+        <div class="btn-row">
+          <a href="#contact" class="btn">Get a Quote →</a>
+          <a href="#services" class="icon-btn neu-btn">▶</a>
+        </div>
+      </div>
+      <div class="hero-visual neu-out">
+        <div class="frame"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="steel building"></div>
+        <div class="stat-chip c1 neu-out"><div class="ic">✓</div><div><b>99%</b><span>Model Accuracy</span></div></div>
+        <div class="stat-chip c2 neu-out"><div class="ic">◆</div><div><b>16+ yrs</b><span>Industry Experience</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="kicker reveal">What We Do</div>
+      <h2 class="sec-title reveal">Services Designed Around Your Workflow</h2>
+      <p class="sec-sub reveal">A specialist detailing studio helping fabricators and contractors move faster with fewer coordination headaches.</p>
+      <div class="grid-4" id="services">
+        <div class="card neu-out reveal d1"><div class="icon neu-in">▦</div><h4>Structural Detailing</h4><p>3D structural steel models with shop and erection drawings, ready for fabrication.</p></div>
+        <div class="card neu-out reveal d2"><div class="icon neu-in">⟡</div><h4>Connection Design</h4><p>Safe, economical, and structurally efficient connection alternatives.</p></div>
+        <div class="card neu-out reveal d3"><div class="icon neu-in">▤</div><h4>Joist & Deck Systems</h4><p>Girders, open web joists, composite and non-composite deck detailing.</p></div>
+        <div class="card neu-out reveal d4"><div class="icon neu-in">◈</div><h4>Estimating Services</h4><p>Accurate takeoffs and estimating services built directly from the model.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container why-grid">
+      <div class="why-visual neu-out reveal">
+        <div class="frame"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="steel frame"></div>
+      </div>
+      <div class="reveal d2">
+        <div class="kicker" style="text-align:left;">Why Vertex</div>
+        <h2>16+ Years of Combined Industry Experience</h2>
+        <p class="lead">Vertex Steel Studio blends deep structural expertise with a modern, calm workflow — helping teams reduce RFIs and move projects forward with confidence.</p>
+        <div class="bar-item"><div class="bar-head"><span>Detailing Accuracy</span><span>96%</span></div><div class="bar-track neu-in"><div class="bar-fill" data-w="96"></div></div></div>
+        <div class="bar-item"><div class="bar-head"><span>Connection Design</span><span>91%</span></div><div class="bar-track neu-in"><div class="bar-fill" data-w="91"></div></div></div>
+        <div class="bar-item"><div class="bar-head"><span>Estimating Services</span><span>99%</span></div><div class="bar-track neu-in"><div class="bar-fill" data-w="99"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="kicker reveal">How We Work</div>
+      <h2 class="sec-title reveal">Check Out Our Work Process</h2>
+      <div class="process">
+        <div class="step neu-out reveal d1"><div class="num neu-in">1</div><h4>Request a Meeting</h4><p>Tell us your scope, timeline, and delivery needs.</p></div>
+        <div class="step neu-out reveal d2"><div class="num neu-in">2</div><h4>Receive a Custom Plan</h4><p>Get a tailored plan built directly after our first conversation.</p></div>
+        <div class="step neu-out reveal d3"><div class="num neu-in">3</div><h4>Let's Make It Happen</h4><p>Your project becomes our priority, delivered on schedule.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="numbers-card neu-out reveal">
+        <div class="num-grid">
+          <div><div class="n-wrap neu-in"><div class="n" data-count="86">0</div></div><div class="l">Happy Clients</div></div>
+          <div><div class="n-wrap neu-in"><div class="n" data-count="16">0</div></div><div class="l">Years Active</div></div>
+          <div><div class="n-wrap neu-in"><div class="n" data-count="112">0</div></div><div class="l">Total Jobs</div></div>
+          <div><div class="n-wrap neu-in"><div class="n" data-count="6800">0</div></div><div class="l">Dev. Hours</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="quote-wrap neu-out reveal">
+        <div class="quote-img"></div>
+        <div class="quote-form">
+          <h3>Get a Quote</h3>
+          <p>Request a quote and our team will get back to you shortly.</p>
+          <form onsubmit="return false;">
+            <div class="form-row"><input placeholder="Your Name *" required><input placeholder="Phone Number"></div>
+            <div class="form-row"><input placeholder="Your Email *" type="email" required><input placeholder="Subject"></div>
+            <textarea placeholder="Message"></textarea>
+            <button class="btn" type="submit">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <div class="kicker reveal">Recent Work</div>
+      <h2 class="sec-title reveal">Our Portfolio</h2>
+      <div class="grid-4-port">
+        <div class="port-item neu-out reveal d1"><div class="port-frame"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Harborview Residences</span></div></div></div>
+        <div class="port-item neu-out reveal d2"><div class="port-frame"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>2nd Street Tower</span></div></div></div>
+        <div class="port-item neu-out reveal d3"><div class="port-frame"><img src="https://images.unsplash.com/photo-1590644365607-1c5a6a3d5b0e?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Safety Training Campus</span></div></div></div>
+        <div class="port-item neu-out reveal d4"><div class="port-frame"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Distribution Hub</span></div></div></div>
+        <div class="port-item neu-out reveal d1"><div class="port-frame"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>County High School</span></div></div></div>
+        <div class="port-item neu-out reveal d2"><div class="port-frame"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Elementary Campus</span></div></div></div>
+        <div class="port-item neu-out reveal d3"><div class="port-frame"><img src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Gay Street Offices</span></div></div></div>
+        <div class="port-item neu-out reveal d4"><div class="port-frame"><img src="https://images.unsplash.com/photo-1462899006636-339e08d1844e?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Joint Training Facility</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="kicker reveal">Testimonial</div>
+      <h2 class="sec-title reveal">What Our Customers Are Saying</h2>
+      <div class="testi-card neu-out reveal">
+        <div class="quote-mark neu-in">"</div>
+        <p>Vertex made our detailing process feel calm for the first time. Clean models, clear communication, and every deadline hit.</p>
+        <div class="stars">★★★★★</div>
+        <div class="who">Priya Nair<span>Project Manager, Nair Fabrication</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-wrap neu-out">
+        <div class="foot-grid">
+          <div>
+            <div class="logo" style="margin-bottom:16px;"><span class="mark neu-in">V</span>VERTEX</div>
+            <p>A structural steel detailing studio focused on clean models, clear communication, and dependable delivery.</p>
+          </div>
+          <div><h4>Company</h4><ul><li>About Us</li><li>Careers</li><li>Case Studies</li></ul></div>
+          <div><h4>Services</h4><ul><li>Detailing</li><li>Connections</li><li>Estimating</li></ul></div>
+          <div><h4>Studio</h4><p>200 Vertex Plaza<br>Austin, TX, USA<br><br>hello@vertexsteel.com</p></div>
+        </div>
+        <div class="foot-bottom">© 2026 Vertex Steel Studio. Design concept for demonstration purposes.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="totop neu-out" id="totop">↑</div>
+
+<script>
+  const totop=document.getElementById('totop');
+  window.addEventListener('scroll',()=>{ totop.classList.toggle('show',window.scrollY>500); });
+  totop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const bars=document.querySelectorAll('.bar-fill');
+  const barIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.width=e.target.dataset.w+'%'; barIO.unobserve(e.target); } });
+  },{threshold:.4});
+  bars.forEach(b=>barIO.observe(b));
+
+  const counters=document.querySelectorAll('.n[data-count]');
+  const countIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target, target=+el.dataset.count;
+        let cur=0; const step=Math.max(1,Math.ceil(target/60));
+        const tick=()=>{ cur=Math.min(target,cur+step); el.textContent=cur.toLocaleString(); if(cur<target) requestAnimationFrame(tick); };
+        tick();
+        countIO.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  counters.forEach(c=>countIO.observe(c));
+</script>
+</body>
+</html>

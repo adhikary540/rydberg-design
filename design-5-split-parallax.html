@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ironclad Detailing Co. | Structural Steel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rust:#b5502e;
+    --clay:#e8863a;
+    --ink:#241c17;
+    --cream:#f4ede2;
+    --card:#fffaf2;
+    --muted:#7a6d5f;
+    --line:#e2d5c2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  .container{width:min(1200px,92%);margin:0 auto;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:700;}
+
+  .reveal{opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateX(0);}
+  .reveal.right{transform:translateX(40px);}
+  .reveal.right.in{transform:translateX(0);}
+  .reveal.up{transform:translateY(40px);}
+  .reveal.up.in{transform:translateY(0);}
+  .reveal.d1{transition-delay:.1s;} .reveal.d2{transition-delay:.22s;} .reveal.d3{transition-delay:.34s;} .reveal.d4{transition-delay:.46s;}
+
+  /* ---------- Header ---------- */
+  header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:24px 0;transition:all .3s ease;}
+  header.scrolled{background:rgba(244,237,226,.92);backdrop-filter:blur(8px);padding:14px 0;border-bottom:1px solid var(--line);}
+  header .container{display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;letter-spacing:-.5px;}
+  .logo span{color:var(--rust);}
+  nav ul{display:flex;gap:30px;}
+  nav a{font-weight:600;font-size:.92rem;position:relative;}
+  nav a:after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--rust);transition:width .3s ease;}
+  nav a:hover:after{width:100%;}
+  .nav-cta{background:var(--ink);color:var(--cream);padding:11px 24px;border-radius:6px;font-weight:600;font-size:.88rem;transition:background .3s;}
+  .nav-cta:hover{background:var(--rust);}
+  .burger{display:none;flex-direction:column;gap:5px;}
+  .burger span{width:24px;height:2px;background:var(--ink);}
+
+  /* ---------- Hero split ---------- */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;}
+  .hero-left{display:flex;flex-direction:column;justify-content:center;padding:140px 60px 60px clamp(20px,6vw,90px);}
+  .eyebrow{display:flex;align-items:center;gap:10px;color:var(--rust);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.78rem;margin-bottom:22px;}
+  .eyebrow .ln{width:36px;height:2px;background:var(--rust);}
+  .hero h1{font-size:3.6rem;line-height:1.08;margin-bottom:24px;letter-spacing:-1px;}
+  .hero h1 em{font-style:italic;color:var(--rust);}
+  .hero p{color:var(--muted);font-size:1.05rem;line-height:1.75;max-width:440px;margin-bottom:36px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;background:var(--rust);color:#fff;padding:16px 30px;
+    border-radius:6px;font-weight:600;font-size:.92rem;transition:transform .3s ease,background .3s ease;border:none;cursor:pointer;
+  }
+  .btn:hover{background:var(--ink);transform:translateY(-3px);}
+  .btn.outline{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+  .btn.outline:hover{background:var(--ink);color:var(--cream);}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-right{position:relative;overflow:hidden;}
+  .hero-right img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transform:scale(1.1);animation:kenburns 18s ease-in-out infinite alternate;}
+  @keyframes kenburns{to{transform:scale(1);}}
+  .hero-right:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--cream) 0%,transparent 12%);z-index:1;}
+  .hero-tape{position:absolute;bottom:40px;left:40px;z-index:2;background:var(--card);padding:18px 24px;border-radius:8px;box-shadow:0 20px 40px rgba(36,28,23,.25);display:flex;gap:16px;align-items:center;}
+  .hero-tape .num{font-family:'Fraunces',serif;font-weight:900;font-size:1.8rem;color:var(--rust);}
+  .hero-tape span{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+
+  /* marquee */
+  .marquee{background:var(--ink);color:var(--cream);padding:14px 0;overflow:hidden;white-space:nowrap;}
+  .marquee-track{display:inline-block;animation:scroll-left 24s linear infinite;font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:1px;}
+  .marquee-track span{margin:0 24px;color:var(--clay);}
+  @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- Section common ---------- */
+  section{padding:110px 0;}
+  .kicker{color:var(--rust);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.78rem;margin-bottom:12px;}
+  .sec-title{font-size:2.4rem;margin-bottom:16px;max-width:600px;letter-spacing:-.5px;}
+  .sec-sub{color:var(--muted);max-width:560px;line-height:1.75;font-size:.98rem;}
+  .row-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap;}
+
+  /* ---------- Services - offset cards ---------- */
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:34px 26px;transition:transform .4s ease,box-shadow .4s ease;}
+  .card:nth-child(2){transform:translateY(24px);}
+  .card:nth-child(4){transform:translateY(24px);}
+  .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(36,28,23,.12);}
+  .card:nth-child(2):hover,.card:nth-child(4):hover{transform:translateY(16px);}
+  .card .icon{width:56px;height:56px;border-radius:12px;background:var(--rust);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:20px;}
+  .card h4{font-size:1.1rem;margin-bottom:12px;}
+  .card p{color:var(--muted);font-size:.88rem;line-height:1.65;font-family:'Inter',sans-serif;}
+
+  /* ---------- Why: sticky image + scroll stats ---------- */
+  .why{background:var(--ink);color:var(--cream);}
+  .why-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center;}
+  .why-img{border-radius:14px;overflow:hidden;position:relative;}
+  .why-img img{filter:sepia(20%) contrast(1.05);}
+  .why h2{font-size:2.3rem;margin-bottom:20px;color:var(--cream);}
+  .why p.lead{color:#c9bdac;line-height:1.8;margin-bottom:36px;}
+  .bar-item{margin-bottom:24px;}
+  .bar-head{display:flex;justify-content:space-between;margin-bottom:8px;font-weight:600;font-size:.9rem;}
+  .bar-track{height:6px;background:#3c332b;border-radius:4px;overflow:hidden;}
+  .bar-fill{height:100%;width:0;background:var(--clay);transition:width 1.5s cubic-bezier(.16,1,.3,1);}
+
+  /* ---------- Process - timeline ---------- */
+  .timeline{position:relative;max-width:780px;margin:0 auto;}
+  .timeline:before{content:'';position:absolute;top:0;bottom:0;left:34px;width:2px;background:var(--line);}
+  .t-step{display:flex;gap:30px;margin-bottom:50px;position:relative;}
+  .t-step .num{width:70px;height:70px;border-radius:50%;background:var(--card);border:2px solid var(--rust);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;color:var(--rust);flex-shrink:0;z-index:1;transition:all .4s ease;}
+  .t-step:hover .num{background:var(--rust);color:#fff;transform:scale(1.08);}
+  .t-step h4{font-size:1.3rem;margin-bottom:8px;margin-top:14px;}
+  .t-step p{color:var(--muted);font-size:.92rem;line-height:1.7;max-width:480px;}
+
+  /* ---------- Numbers ---------- */
+  .numbers{background:var(--clay);}
+  .num-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;}
+  .num-grid>div{padding:60px 20px;border-left:1px solid rgba(36,28,23,.15);}
+  .num-grid>div:first-child{border-left:none;}
+  .num-grid .n{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:900;color:var(--ink);}
+  .num-grid .l{color:var(--ink);opacity:.75;text-transform:uppercase;font-size:.8rem;letter-spacing:1px;font-weight:600;margin-top:6px;}
+
+  /* ---------- Portfolio - masonry-ish ---------- */
+  .grid-4-port{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .port-item{position:relative;border-radius:12px;overflow:hidden;height:230px;}
+  .port-item:nth-child(3n+1){height:290px;}
+  .port-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .port-item:hover img{transform:scale(1.12);}
+  .port-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(36,28,23,.85),transparent 55%);display:flex;align-items:flex-end;padding:18px;opacity:0;transition:opacity .4s ease;}
+  .port-item:hover .port-overlay{opacity:1;}
+  .port-overlay span{color:#fff;font-weight:600;font-size:.92rem;font-family:'Fraunces',serif;}
+
+  /* ---------- Testimonial ---------- */
+  .testi{text-align:center;}
+  .testi-card{max-width:700px;margin:0 auto;}
+  .testi-card .quote{font-family:'Fraunces',serif;font-size:3rem;color:var(--rust);}
+  .testi-card p{font-size:1.3rem;line-height:1.7;font-family:'Fraunces',serif;font-weight:400;font-style:italic;margin-bottom:24px;}
+  .stars{color:var(--rust);letter-spacing:3px;margin-bottom:14px;}
+  .who{font-weight:700;font-family:'Inter',sans-serif;}
+  .who span{display:block;font-weight:400;font-size:.82rem;color:var(--muted);}
+
+  /* ---------- Quote ---------- */
+  .quote-wrap{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1fr 1.2fr;}
+  .quote-img2{background:url('https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=900&q=80') center/cover;filter:sepia(15%);}
+  .quote-form{padding:54px;}
+  .quote-form h3{font-size:2rem;margin-bottom:8px;}
+  .quote-form p{color:var(--muted);margin-bottom:28px;font-family:'Inter',sans-serif;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .quote-form input,.quote-form textarea{
+    width:100%;padding:14px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);
+    font-family:'Inter',sans-serif;outline:none;transition:border .3s;
+  }
+  .quote-form input:focus,.quote-form textarea:focus{border-color:var(--rust);}
+  .quote-form textarea{min-height:100px;margin-bottom:22px;resize:vertical;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:#c9bdac;padding:70px 0 24px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:50px;}
+  footer h4{color:var(--cream);margin-bottom:18px;font-size:1.05rem;}
+  footer p{font-size:.88rem;line-height:1.8;font-family:'Inter',sans-serif;}
+  footer ul li{font-size:.88rem;margin-bottom:10px;cursor:pointer;transition:color .3s;font-family:'Inter',sans-serif;}
+  footer ul li:hover{color:var(--clay);}
+  .foot-bottom{border-top:1px solid #3c332b;padding-top:20px;text-align:center;font-size:.8rem;font-family:'Inter',sans-serif;}
+
+  .totop{position:fixed;bottom:30px;right:30px;width:48px;height:48px;border-radius:50%;background:var(--rust);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;z-index:999;}
+  .totop.show{opacity:1;pointer-events:all;}
+
+  @media(max-width:1000px){
+    .hero{grid-template-columns:1fr;}
+    .hero-right{height:340px;order:-1;}
+    .hero-right:before{display:none;}
+    .hero-left{padding:120px 24px 50px;}
+    .grid-4,.grid-4-port,.num-grid{grid-template-columns:repeat(2,1fr);}
+    .card:nth-child(2),.card:nth-child(4){transform:none;}
+    .why-grid,.quote-wrap{grid-template-columns:1fr;}
+    nav,.nav-cta{display:none;}
+    .burger{display:flex;}
+    .hero h1{font-size:2.4rem;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <header id="header">
+    <div class="container">
+      <div class="logo">IRONCLAD<span>.</span></div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Work</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="nav-cta">Request a Quote</a>
+      <div class="burger"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow"><span class="ln"></span>Ironclad Detailing Co.</div>
+      <h1>Where Steel Meets <em>Precision</em> Craft</h1>
+      <p>We translate structural drawings into fabrication-ready steel detailing — connection design, joist systems, and estimating handled by engineers who've been on the shop floor.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn">Request a Quote</a>
+        <a href="#portfolio" class="btn outline">See Our Work</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1200&q=80" alt="steel beams">
+      <div class="hero-tape"><div class="num">22</div><span>Years<br>Building Trust</span></div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">STRUCTURAL DETAILING <span>◆</span> CONNECTION DESIGN <span>◆</span> JOIST & DECK SYSTEMS <span>◆</span> ESTIMATING <span>◆</span> STRUCTURAL DETAILING <span>◆</span> CONNECTION DESIGN <span>◆</span> JOIST & DECK SYSTEMS <span>◆</span> ESTIMATING <span>◆</span></div>
+  </div>
+
+  <section id="about">
+    <div class="container">
+      <div class="row-head">
+        <div>
+          <div class="kicker reveal">What We Do</div>
+          <h2 class="sec-title reveal">Detailing Services Built Around Your Fabrication Shop</h2>
+        </div>
+        <p class="sec-sub reveal right">From concept steel to shop-ready packages, we handle the technical detail so your team can focus on the build.</p>
+      </div>
+      <div class="grid-4" id="services">
+        <div class="card reveal up d1"><div class="icon">▦</div><h4>Structural Detailing</h4><p>3D structural steel models with full shop and erection drawing packages.</p></div>
+        <div class="card reveal up d2"><div class="icon">⟡</div><h4>Connection Design</h4><p>Engineered connections balancing safety, economy, and constructability.</p></div>
+        <div class="card reveal up d3"><div class="icon">▤</div><h4>Joist & Deck Detailing</h4><p>Girders, open web joists, and composite/non-composite deck systems.</p></div>
+        <div class="card reveal up d4"><div class="icon">◈</div><h4>Estimating & Takeoff</h4><p>Accurate material takeoffs and cost estimates straight from the model.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="container why-grid">
+      <div class="why-img reveal">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="steel frame">
+      </div>
+      <div class="reveal right d2">
+        <div class="kicker">Why Ironclad</div>
+        <h2>Two Decades of Shop-Floor-Tested Detailing</h2>
+        <p class="lead">Our detailers have worked inside fabrication shops — every drawing we produce is built to reduce rework and keep your crews moving.</p>
+        <div class="bar-item"><div class="bar-head"><span>Detailing Accuracy</span><span>95%</span></div><div class="bar-track"><div class="bar-fill" data-w="95"></div></div></div>
+        <div class="bar-item"><div class="bar-head"><span>Connection Design</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" data-w="90"></div></div></div>
+        <div class="bar-item"><div class="bar-head"><span>On-Time Delivery</span><span>97%</span></div><div class="bar-track"><div class="bar-fill" data-w="97"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="kicker reveal" style="text-align:center;">How We Work</div>
+      <h2 class="sec-title reveal" style="text-align:center;margin:0 auto 56px;">Our Process, Step By Step</h2>
+      <div class="timeline">
+        <div class="t-step reveal"><div class="num">01</div><div><h4>Kickoff & Scope</h4><p>We review your drawings and confirm scope, timeline, and delivery format.</p></div></div>
+        <div class="t-step reveal d1"><div class="num">02</div><div><h4>Model & Coordinate</h4><p>Our team builds the model and coordinates connections with your engineer of record.</p></div></div>
+        <div class="t-step reveal d2"><div class="num">03</div><div><h4>Deliver & Support</h4><p>Shop-ready drawings delivered on schedule, with revision support through fabrication.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers">
+    <div class="container num-grid">
+      <div class="reveal up"><div class="n" data-count="145">0</div><div class="l">Projects Delivered</div></div>
+      <div class="reveal up d1"><div class="n" data-count="22">0</div><div class="l">Years In Business</div></div>
+      <div class="reveal up d2"><div class="n" data-count="58">0</div><div class="l">Fabricator Partners</div></div>
+      <div class="reveal up d3"><div class="n" data-count="8100">0</div><div class="l">Detailing Hours</div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="quote-wrap reveal up">
+        <div class="quote-img2"></div>
+        <div class="quote-form">
+          <h3>Request a Quote</h3>
+          <p>Tell us about your project and we'll follow up within one business day.</p>
+          <form onsubmit="return false;">
+            <div class="form-row"><input placeholder="Your Name *" required><input placeholder="Phone Number"></div>
+            <div class="form-row"><input placeholder="Your Email *" type="email" required><input placeholder="Project Type"></div>
+            <textarea placeholder="Project details"></textarea>
+            <button class="btn" type="submit">Send Inquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <div class="row-head">
+        <div>
+          <div class="kicker reveal">Recent Work</div>
+          <h2 class="sec-title reveal">Selected Projects</h2>
+        </div>
+      </div>
+      <div class="grid-4-port">
+        <div class="port-item reveal up d1"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Harborview Residences</span></div></div>
+        <div class="port-item reveal up d2"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>2nd Street Tower</span></div></div>
+        <div class="port-item reveal up d3"><img src="https://images.unsplash.com/photo-1590644365607-1c5a6a3d5b0e?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Safety Training Campus</span></div></div>
+        <div class="port-item reveal up d4"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Distribution Hub</span></div></div>
+        <div class="port-item reveal up d1"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>County High School</span></div></div>
+        <div class="port-item reveal up d2"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Elementary Campus</span></div></div>
+        <div class="port-item reveal up d3"><img src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Gay Street Offices</span></div></div>
+        <div class="port-item reveal up d4"><img src="https://images.unsplash.com/photo-1462899006636-339e08d1844e?auto=format&fit=crop&w=500&q=70"><div class="port-overlay"><span>Joint Training Facility</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testi">
+    <div class="container testi-card">
+      <div class="kicker reveal" style="text-align:center;">Testimonial</div>
+      <div class="quote reveal">"</div>
+      <p class="reveal">Ironclad's team thinks like fabricators, not just detailers. Our RFIs dropped and our schedule finally held.</p>
+      <div class="stars reveal">★★★★★</div>
+      <div class="who reveal">Marcus Webb<span>Operations Lead, Webb Fabrication</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div class="logo" style="margin-bottom:16px;color:var(--cream);">IRONCLAD<span>.</span></div>
+          <p>A structural steel detailing studio built by people who've worked the shop floor — precision drawings, delivered on schedule.</p>
+        </div>
+        <div><h4>Company</h4><ul><li>About Us</li><li>Careers</li><li>Case Studies</li></ul></div>
+        <div><h4>Services</h4><ul><li>Detailing</li><li>Connections</li><li>Estimating</li></ul></div>
+        <div><h4>Studio</h4><p>12 Foundry Lane<br>Pittsburgh, PA, USA<br><br>hello@ironcladdetail.com</p></div>
+      </div>
+      <div class="foot-bottom">© 2026 Ironclad Detailing Co. Design concept for demonstration purposes.</div>
+    </div>
+  </footer>
+
+  <div class="totop" id="totop">↑</div>
+
+<script>
+  const header=document.getElementById('header');
+  const totop=document.getElementById('totop');
+  window.addEventListener('scroll',()=>{
+    header.classList.toggle('scrolled',window.scrollY>60);
+    totop.classList.toggle('show',window.scrollY>500);
+  });
+  totop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const bars=document.querySelectorAll('.bar-fill');
+  const barIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.width=e.target.dataset.w+'%'; barIO.unobserve(e.target); } });
+  },{threshold:.4});
+  bars.forEach(b=>barIO.observe(b));
+
+  const counters=document.querySelectorAll('.n[data-count]');
+  const countIO=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target, target=+el.dataset.count;
+        let cur=0; const step=Math.max(1,Math.ceil(target/60));
+        const tick=()=>{ cur=Math.min(target,cur+step); el.textContent=cur.toLocaleString(); if(cur<target) requestAnimationFrame(tick); };
+        tick();
+        countIO.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  counters.forEach(c=>countIO.observe(c));
+</script>
+</body>
+</html>
