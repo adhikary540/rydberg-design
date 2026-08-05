@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArchVDC — Structural VDC / BIM Services &amp; Consulting</title>
+<meta name="description" content="ArchVDC delivers Architectural, Structural, MEP and Civil BIM / VDC modeling, detailing and consulting services for the AEC industry.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ SVG ICON SPRITE (hidden) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-building" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 21V6l8-3 8 3v15M4 21h16M9 21v-4h6v4M8 9h1M8 12h1M8 15h1M15 9h1M15 12h1M15 15h1"/></symbol>
+    <symbol id="icon-cube" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 7.5L12 12l8-4.5M12 12v9"/></symbol>
+    <symbol id="icon-layers" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M12 3l9 5-9 5-9-5 9-5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3 13l9 5 9-5M3 17l9 5 9-5"/></symbol>
+    <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M15 9l-2 6-6 2 2-6 6-2z"/></symbol>
+    <symbol id="icon-scan" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M4 8V5a1 1 0 0 1 1-1h3M20 8V5a1 1 0 0 0-1-1h-3M4 16v3a1 1 0 0 0 1 1h3M20 16v3a1 1 0 0 1-1 1h-3"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="icon-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M12 3v2.5M12 18.5V21M21 12h-2.5M5.5 12H3M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8M18.4 18.4l-1.8-1.8M7.4 7.4L5.6 5.6"/></symbol>
+    <symbol id="icon-checklist" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M9 6h10M9 12h10M9 18h10M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></symbol>
+    <symbol id="icon-bolt" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 8.2a3 3 0 1 1 2 5.5M21 20c0-2.6-1.8-4.5-4-5.2"/></symbol>
+    <symbol id="icon-crane" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 21V9l6-6v6M4 9h14M14 9v12M18 9l3 3M4 21h16"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<div class="topbar">
+  <div class="container">
+    <a href="mailto:info@archvdc.com">info@archvdc.com</a>
+    <a href="tel:+12159042868">+1 215 904 2868</a>
+    <a href="#careers">Careers</a>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="logo">
+      <span class="mark">A</span>
+      <span>ArchVDC<small>Partners in Engineering Excellence</small></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#consulting">BIM Consulting</a></li>
+        <li>
+          <a href="#services">Services <span class="caret">▾</span></a>
+          <div class="dropdown">
+            <a href="architectural-bim.html">Architectural BIM</a>
+            <a href="#structural">Structural BIM</a>
+            <a href="#mep">MEP 3D Modeling</a>
+            <a href="#civil">BIM for Civil &amp; Infrastructure</a>
+            <a href="#pointcloud">Point Cloud to BIM</a>
+          </div>
+        </li>
+        <li><a href="#casestudies">Case Studies</a></li>
+        <li><a href="#education">BIM Education</a></li>
+        <li>
+          <a href="#sectors">Sectors <span class="caret">▾</span></a>
+          <div class="dropdown">
+            <a href="#healthcare">HealthCare</a>
+            <a href="#institutional">Institutional</a>
+            <a href="#infrastructure">Infrastructure</a>
+            <a href="#hospitality">Hospitality</a>
+            <a href="#industrial">Industrial</a>
+          </div>
+        </li>
+        <li><a href="#vdc">VDC Services</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-cta">
+      <a href="#search" class="icon-btn" aria-label="Search">🔍</a>
+      <a href="#contact" class="btn btn-orange">Let's Connect</a>
+      <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="blueprint-grid"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <h1>STRUCTURAL VDC / BIM<span>Services &amp; Consulting</span></h1>
+      <p>Our structural BIM / VDC services include structural bim modeling, structural steel detailing, precast panel detailing, rebar detailing and construction documentation.</p>
+      <div class="hero-actions">
+        <a href="architectural-bim.html" class="btn btn-ghost">VIEW SERVICES</a>
+        <a href="#contact" class="btn btn-orange">Let's Connect</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="iso-building">
+        <svg viewBox="0 0 460 420" xmlns="http://www.w3.org/2000/svg">
+          <g opacity=".9">
+            <polygon points="230,40 400,110 400,260 230,330 60,260 60,110" fill="none" stroke="#1f6fb2" stroke-width="1.5" opacity=".35"/>
+            <polygon points="230,90 360,145 360,255 230,310 100,255 100,145" fill="#ffffff" stroke="#0e2138" stroke-width="1.4"/>
+            <polygon points="230,90 360,145 230,200 100,145" fill="#dfe9f4" stroke="#0e2138" stroke-width="1.4"/>
+            <polygon points="230,200 360,145 360,255 230,310" fill="#c7dbef" stroke="#0e2138" stroke-width="1.2"/>
+            <polygon points="230,200 100,145 100,255 230,310" fill="#eef3f8" stroke="#0e2138" stroke-width="1.2"/>
+            <g stroke="#f26b1d" stroke-width="1.3" opacity=".9">
+              <line x1="230" y1="200" x2="230" y2="310"/>
+              <line x1="165" y1="172" x2="165" y2="282"/>
+              <line x1="295" y1="172" x2="295" y2="282"/>
+              <line x1="100" y1="180" x2="230" y2="235"/>
+              <line x1="360" y1="180" x2="230" y2="235"/>
+              <line x1="100" y1="215" x2="230" y2="270"/>
+              <line x1="360" y1="215" x2="230" y2="270"/>
+            </g>
+            <g stroke="#1f6fb2" stroke-width="1" opacity=".55">
+              <line x1="130" y1="160" x2="130" y2="266"/>
+              <line x1="330" y1="160" x2="330" y2="266"/>
+            </g>
+          </g>
+          <g>
+            <circle cx="230" cy="90" r="4" fill="#f26b1d"/>
+            <circle cx="360" cy="145" r="4" fill="#1f6fb2"/>
+            <circle cx="100" cy="145" r="4" fill="#1f6fb2"/>
+            <circle cx="230" cy="310" r="4" fill="#0e2138"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <span class="active"></span><span></span><span></span><span></span><span></span>
+  </div>
+</section>
+
+<!-- ============ SERVICES GRID ============ -->
+<section class="services-strip" id="services">
+  <div class="container">
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about-section" id="about">
+  <div class="container reveal">
+    <span class="eyebrow" style="display:block;text-align:center;">Since 2007</span>
+    <h2>Providing a comprehensive range of VDC / BIM / CAD services since 2007!</h2>
+    <p>Founded in 2007, ArchVDC is a trusted engineering service partner to the construction industry. Whether you are a builder, a general contractor, or an architect, ArchVDC can fulfil your project requirements with tailored and customized solutions ranging from design development to as-built BIM modeling. With engineering centers established globally, ArchVDC delivers a proven combination of accuracy, affordability, and timeliness across every project undertaking.</p>
+    <p>Leveraging the latest technology and practices in the AEC industry such as Integrated BIM Project Delivery (IPD), we help clients ranging from construction companies to product manufacturers, realize their goals within the predefined standards, timelines, and budget — creating a maximum return on investment on every project.</p>
+    <p>With more than a decade of experience, we understand that every client's requirement is unique — we invest time and effort to learn their standards and procedures, bridging the gap between concept and constructability through virtual modeling, backed by a streamlined quality assurance program.</p>
+  </div>
+</section>
+
+<!-- ============ ADVANTAGE ============ -->
+<section class="advantage">
+  <div class="container advantage-grid">
+    <div class="reveal">
+      <h3>The ArchVDC Advantage</h3>
+      <h4>Why ArchVDC?</h4>
+      <p>When you bring ArchVDC as your engineering partner at any stage of your project life cycle, you leverage the expertise of an engineering team with a proven mastery of the most advanced modeling and detailing software.</p>
+      <p>Our teams — architectural, MEP, and structural — have an unmatched skill set that empowers them to work flexibly and competently across disciplines, backed by state-of-the-art infrastructure.</p>
+    </div>
+    <ul class="advantage-list">
+      <li><span class="dot"></span>Comprehensive set of BIM solutions for the AEC industry</li>
+      <li><span class="dot"></span>State-of-the-art infrastructure</li>
+      <li><span class="dot"></span>System-driven "Best Project Practice" (BPP) production process</li>
+      <li><span class="dot"></span>Refined quality assurance procedure</li>
+      <li><span class="dot"></span>Well-qualified and specialized resources with domain knowledge</li>
+      <li><span class="dot"></span>Exposure to international BIM standards</li>
+      <li><span class="dot"></span>Constant technology updates to match the pace of the construction industry</li>
+      <li><span class="dot"></span>Extensive experience from over 5,000 delivered projects</li>
+      <li><span class="dot"></span>Flexibility and scalability in staffing and manpower management</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="stat reveal"><svg class="ic"><use href="#icon-users"/></svg><div class="num" data-target="1000" data-suffix="+">0</div><div class="label">Clients</div></div>
+    <div class="stat reveal d1"><svg class="ic"><use href="#icon-globe"/></svg><div class="num" data-target="20" data-suffix="+">0</div><div class="label">Countries</div></div>
+    <div class="stat reveal d2"><svg class="ic"><use href="#icon-building"/></svg><div class="num" data-target="10000" data-suffix="+">0</div><div class="label">Projects</div></div>
+    <div class="stat reveal d3"><svg class="ic"><use href="#icon-users"/></svg><div class="num" data-target="300" data-suffix="+">0</div><div class="label">People</div></div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section class="partners">
+  <div class="container partners-grid reveal">
+    <div class="brand">⛛ AUTODESK Partner</div>
+    <div class="brand">◆ BIM Forum</div>
+    <div class="brand">▣ DBIA</div>
+    <div class="brand">◈ Building Transformations</div>
+    <div class="brand">⬡ ABC Member</div>
+    <div class="brand">◎ Export Promotion Council</div>
+    <div class="brand">▤ BIM-MEP AUS</div>
+    <div class="brand">✳ ADA Compliant</div>
+    <div class="brand">⬢ IACC</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
+  <div class="container footer-grid">
+    <div class="foot-about">
+      <a href="index.html" class="logo" style="color:#fff;margin-bottom:14px;">
+        <span class="mark">A</span><span>ArchVDC</span>
+      </a>
+      <p>ArchVDC is a leading engineering service provider specializing in VDC, BIM, and CAD solutions for the construction industry. With over 300 engineers across architectural, structural, and MEP domains, we help companies, contractors, architects, and engineers integrate BIM technology efficiently — ensuring projects meet timelines, standards, and budgets for optimal ROI.</p>
+      <ul class="foot-contacts">
+        <li><span class="flag"></span> USA &nbsp;|&nbsp; +1 215 904 2868</li>
+        <li><span class="flag" style="background:#f26b1d;"></span> UAE &nbsp;|&nbsp; +971 50 237 7430</li>
+        <li><span class="flag" style="background:#0e2138;"></span> IND &nbsp;|&nbsp; +91 484 298 8448</li>
+        <li><span class="flag" style="background:#2f8fd6;"></span> AUS &nbsp;|&nbsp; +61 363 877 090</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Our Services</h5>
+      <ul>
+        <li><a href="#">Engineering Services</a></li>
+        <li><a href="#">Industrial Plant Digitization</a></li>
+        <li><a href="#">Mechanical CAD/CAM</a></li>
+        <li><a href="#">GeoBIM Services</a></li>
+        <li><a href="#">BIM Training</a></li>
+        <li><a href="#">Digital Twin</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>VDC / BIM Services</h5>
+      <ul>
+        <li><a href="architectural-bim.html">Architectural BIM</a></li>
+        <li><a href="#">Structural BIM</a></li>
+        <li><a href="#">MEP BIM</a></li>
+        <li><a href="#">Facade BIM</a></li>
+        <li><a href="#">BIM Coordination</a></li>
+        <li><a href="#">Point Cloud to BIM</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Work Samples</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© Copyright 2026 ArchVDC | Privacy Policy</span>
+    <div class="socials">
+      <a href="#" aria-label="LinkedIn">in</a>
+      <a href="#" aria-label="Facebook">f</a>
+      <a href="#" aria-label="YouTube">▶</a>
+      <a href="#" aria-label="X">𝕏</a>
+      <a href="#" aria-label="Instagram">◎</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  // Build the 28-item services grid from data (keeps HTML lean + easy to edit)
+  const SERVICES = [
+    ["icon-building","Architectural BIM Services","Complete solutions for all aspects of architectural design and building construction.","architectural-bim.html"],
+    ["icon-layers","Structural BIM","Detailed structural detailing & modeling for both residential and commercial structures.","#"],
+    ["icon-bolt","MEP 3D Modeling","Comprehensive & precise modeling for mechanical, electrical, and plumbing systems.","#"],
+    ["icon-crane","Steel Detailing","Precision detailing services for steel structures in industrial and commercial projects.","#"],
+    ["icon-compass","Facade Shop Drawings","Specialized detailing for facades and curtain walls for various construction needs.","#"],
+    ["icon-cube","BIM Services","Extensive Building Information Modeling across architecture, MEP, and structural sectors.","#"],
+    ["icon-scan","Point Cloud Scan to BIM","Convert point cloud data into accurate BIM models for construction and renovation.","#"],
+    ["icon-layers","Precast Detailing","Detailed shop drawings and designs for all types of precast concrete components.","#"],
+    ["icon-gear","Mechanical CAD Services","Drafting and modeling services for mechanical fabrication and manufacturing processes.","#"],
+    ["icon-globe","BIM for Civil & Infrastructure","BIM solutions for civil infrastructure, transportation, and water management.","#"],
+    ["icon-checklist","Rebar Detailing","Detailed rebar shop and placement drawings following industry standards and practices.","#"],
+    ["icon-building","BIM for Industrial Engineering","BIM services for industrial engineering projects, supporting contractors and fabricators.","#"],
+    ["icon-users","BIM Consulting / Implementation","Consulting services to streamline your transition from CAD to effective BIM practice.","#"],
+    ["icon-bolt","Solar Panel Detailing","Drafting services for solar photovoltaic systems in residential and commercial buildings.","#"],
+    ["icon-cube","Virtual Design & Construction","Advanced virtual construction technologies covering the full spectrum of BIM services.","#"],
+    ["icon-checklist","BIM Model Audit","Thorough auditing of BIM models to ensure accuracy and compliance with design standards.","#"],
+    ["icon-bolt","Electrical BIM Shop Drawings","Detailed shop drawings for electrical components ensuring smooth installation processes.","#"],
+    ["icon-compass","BIM for Facility Management","Management of building information throughout the lifecycle for efficient facility management.","#"],
+    ["icon-cube","BIM for Modular & Prefab","Creation of accurate virtual prototypes for modular and prefabricated building components.","#"],
+    ["icon-scan","Digital Twins","Real-time simulations of building performance using cutting-edge digital twin technology.","#"],
+    ["icon-gear","Industrial Plant Digitization","3D solutions for the precise digitization of industrial plant facilities and operations.","#"],
+    ["icon-globe","GeoBIM Services","GeoBIM solutions for planning and management in construction and infrastructure projects.","#"],
+    ["icon-checklist","ISO 19650 Consulting","Consulting to align BIM processes with ISO 19650 standards for optimal project outcomes.","#"],
+    ["icon-users","BIM Staff Augmentation","Assists clients in hiring experienced BIM engineers and efficiently scaling their businesses.","#"],
+    ["icon-building","BIM for Data Center Design","BIM solutions for data center design and coordination to improve efficiency and reduce errors.","#"],
+    ["icon-globe","BIM for USA Federal Projects","Providing BIM modeling, documentation, and compliance support for federal construction projects.","#"],
+    ["icon-scan","Reverse Engineering","Convert physical components into accurate 3D models for redesign and seamless BIM integration.","#"],
+    ["icon-compass","Engineering Design-Assist Services","Design-assist services to support clients with greater efficiency and coordination during the design phase.","#"],
+  ];
+  const grid = document.getElementById('servicesGrid');
+  grid.innerHTML = SERVICES.map(([icon,title,desc,link]) => `
+    <a class="service-card reveal" href="${link}">
+      <svg class="ic"><use href="#${icon}"/></svg>
+      <div><h4>${title}</h4><p>${desc}</p></div>
+    </a>`).join('') + `
+    <a class="service-card cta-cell reveal" href="#contact">
+      <span class="btn btn-orange">Get a Quote →</span>
+    </a>`;
+  // re-run reveal observer on injected cards
+  document.querySelectorAll('#servicesGrid .reveal').forEach(el=>{
+    const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1});
+    io.observe(el);
+  });
+</script>
+</body>
+</html>

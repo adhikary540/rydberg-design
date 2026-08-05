@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architectural VDC / BIM Services — ArchVDC</title>
+<meta name="description" content="ArchVDC's architectural BIM services deliver precise 3D models, construction documentation, and design coordination for enhanced pre-construction efficiency.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ SVG ICON SPRITE (hidden) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-building" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 21V6l8-3 8 3v15M4 21h16M9 21v-4h6v4M8 9h1M8 12h1M8 15h1M15 9h1M15 12h1M15 15h1"/></symbol>
+    <symbol id="icon-cube" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 7.5L12 12l8-4.5M12 12v9"/></symbol>
+    <symbol id="icon-scan" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M4 8V5a1 1 0 0 1 1-1h3M20 8V5a1 1 0 0 0-1-1h-3M4 16v3a1 1 0 0 0 1 1h3M20 16v3a1 1 0 0 1-1 1h-3"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14" r="1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="icon-pencil" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 20l1-4L16 5l3 3L8 19l-4 1zM14 6.5l3.5 3.5"/></symbol>
+    <symbol id="icon-family" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="8" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M3 20c0-3 2.2-5 5-5s5 2 5 5M14 20c0-2.5 1.7-4.3 4-4.3s4 1.8 4 4.3"/></symbol>
+    <symbol id="icon-doc" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M6 3h9l3 3v15H6z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M15 3v3h3M9 12h6M9 15h6M9 9h2"/></symbol>
+    <symbol id="icon-mill" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 20V9l8-5 8 5v11H4z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M9 20v-6h6v6"/></symbol>
+    <symbol id="icon-modular" viewBox="0 0 24 24"><rect x="4" y="10" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="10" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="8" y="4" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="icon-quantity" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 6v13h16V6M8 10h8M8 14h5"/></symbol>
+    <symbol id="icon-cad" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 5h16v14H4z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M4 9h16M9 9v10"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M4 12l5 5L20 6"/></symbol>
+    <symbol id="icon-civil3d" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M12 3v18M3 12h18"/></symbol>
+    <symbol id="icon-revit" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 4h16v16H4z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M8 8h8v8H8z"/></symbol>
+    <symbol id="icon-dynamo" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="18" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.4" d="M8 7l7 0M7.5 8l3.5 8M16.5 8L13 16"/></symbol>
+    <symbol id="icon-bim360" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M4 7.5L12 12l8-4.5"/></symbol>
+    <symbol id="icon-infraworks" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 20l5-9 4 5 3-6 6 10H3z"/></symbol>
+    <symbol id="icon-insight" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M12 3a6 6 0 0 1 3.5 10.9c-.6.5-1 1.2-1 2.1v.5h-5v-.5c0-.9-.4-1.5-1-2.1A6 6 0 0 1 12 3z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M9.5 20h5"/></symbol>
+    <symbol id="icon-rebarcad" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M4 4c4 0 4 4 8 4s4-4 8-4M4 12c4 0 4 4 8 4s4-4 8-4M4 20c4 0 4-4 8-4"/></symbol>
+    <symbol id="icon-recap" viewBox="0 0 24 24"><circle cx="12" cy="13" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8 6h2l1-2h2l1 2h2a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="icon-navis" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 6l8-3 8 3-8 3-8-3zM4 6v12l8 3M20 6v12l-8 3M12 9v12"/></symbol>
+    <symbol id="icon-3dsmax" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 8l8-5 8 5-8 5-8-5zM4 8v9l8 5M20 8v9l-8 5M12 13v9"/></symbol>
+    <symbol id="icon-planswift" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 4h16v16H4z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8 16l3-4 3 2 3-5"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ HEADER (shared) ============ -->
+<div class="topbar">
+  <div class="container">
+    <a href="mailto:info@archvdc.com">info@archvdc.com</a>
+    <a href="tel:+12159042868">+1 215 904 2868</a>
+    <a href="#careers">Careers</a>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="logo">
+      <span class="mark">A</span>
+      <span>ArchVDC<small>Partners in Engineering Excellence</small></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li>
+          <a href="#services">Services <span class="caret">▾</span></a>
+          <div class="dropdown">
+            <a href="architectural-bim.html" class="active">Architectural BIM</a>
+            <a href="#structural">Structural BIM</a>
+            <a href="#mep">MEP 3D Modeling</a>
+            <a href="#civil">BIM for Civil &amp; Infrastructure</a>
+            <a href="#pointcloud">Point Cloud to BIM</a>
+          </div>
+        </li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-cta">
+      <a href="#search" class="icon-btn" aria-label="Search">🔍</a>
+      <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero">
+  <div class="container reveal">
+    <div class="eyebrow-line"></div>
+    <h1>ARCHITECTURAL VDC / BIM SERVICES</h1>
+    <p>ArchVDC's architectural BIM services deliver precise 3D models, construction documentation, and design coordination for enhanced pre-construction efficiency.</p>
+    <a href="#contact" class="btn btn-orange">Let's Connect</a>
+  </div>
+</section>
+
+<!-- ============ INTRO / PILL SERVICES ============ -->
+<section class="breadcrumb-section">
+  <div class="container">
+    <div class="kicker reveal">
+      <h2>Architectural VDC / BIM Services</h2>
+      <span class="line"></span>
+    </div>
+    <p>ArchVDC, with a skilled team of architects, offers a wide range of Architectural BIM services. These include the conversion of design drawings into accurate construction documents and 3D models with parametric families. We ensure that our customers get the most out of our experience — having worked with architects, general contractors, builders, and engineers on some of the most prestigious projects.</p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="intro-flex">
+    <div class="iso-small reveal">
+      <svg viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="230,20 430,90 430,190 230,260 30,190 30,90" fill="none" stroke="#1f6fb2" stroke-width="1.2" opacity=".25"/>
+        <polygon points="70,150 220,90 220,190 70,250" fill="#eef3f8" stroke="#0e2138" stroke-width="1.4"/>
+        <polygon points="220,90 380,140 380,220 220,190" fill="#dfe9f4" stroke="#0e2138" stroke-width="1.4"/>
+        <polygon points="70,150 220,90 380,140 240,205" fill="#ffffff" stroke="#0e2138" stroke-width="1.4"/>
+        <g stroke="#f26b1d" stroke-width="1.1" opacity=".85">
+          <line x1="100" y1="163" x2="100" y2="228"/>
+          <line x1="140" y1="150" x2="140" y2="215"/>
+          <line x1="180" y1="137" x2="180" y2="202"/>
+          <line x1="260" y1="150" x2="260" y2="212"/>
+          <line x1="300" y1="163" x2="300" y2="225"/>
+          <line x1="340" y1="176" x2="340" y2="238"/>
+        </g>
+      </svg>
+    </div>
+    <div class="pill-grid reveal">
+      <div class="pill">Architectural Engineering</div>
+      <div class="pill">Architectural 3D Modeling</div>
+      <div class="pill">Millwork Shop Drawings</div>
+      <div class="pill">Construction Documentation</div>
+      <div class="pill">Point Cloud Scan to BIM</div>
+      <div class="pill">BIM for Modular Construction</div>
+      <div class="pill">Revit BIM Modeling</div>
+      <div class="pill">Revit Family Creation</div>
+      <div class="pill">Architectural Quantity Takeoff</div>
+      <div class="pill">CAD Drafting</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALLOUT ============ -->
+<section class="callout-band reveal">
+  <div class="container">
+    <p>Our services are focused on assisting clients in cutting downtime and costs, offering them more value for money than what can be gained from conventional 2D drafting. <a class="hl" href="#">Building Information Modeling (BIM)</a> is a great tool for visualization — it enables a three-dimensional virtual representation of the building. During a project's bidding phase, renderings, walkthroughs, and sequencing of the model may be presented with better clarity.</p>
+    <a href="#casestudies" class="btn btn-blue">Explore Case Studies</a>
+  </div>
+</section>
+
+<!-- ============ CHECKLIST ============ -->
+<section class="checklist-section">
+  <div class="container">
+    <h3 class="reveal">We offer the following services for architects</h3>
+    <ul class="checklist-grid reveal">
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>VDC / BIM Services</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>BIM Design Development</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Custom Family Creation</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>BIM Consulting</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>BIM for Infrastructure</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>4D BIM Scheduling</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Construction Documentation</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>BIM for Interior Design</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>3D Modeling</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Energy Analysis Modeling</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Presentation Modeling</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Point Cloud Scan to BIM</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Architecture Drafting</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Revit Modeling</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Cost Estimation (5D BIM)</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Shop Drawings</li>
+      <li><span class="check"><svg width="12" height="12"><use href="#icon-check"/></svg></span>Millwork Shop Drawings</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="experience-section">
+  <div class="container">
+    <h3 class="reveal">Our Experience</h3>
+    <p class="reveal" style="max-width:900px;color:var(--muted);">Over the years, we have delivered various BIM projects to residential, commercial, and industrial sectors for projects spread across the globe. It is this extensive experience and knowledge of international building construction standards that make us stand out among our competitors.</p>
+    <p class="reveal" style="max-width:900px;color:var(--muted);">We have a strong track record of working on large-scale projects with top-tier architects, adding to our extensive skillset and capabilities in <a href="#" style="color:var(--orange);font-weight:600;">BIM modeling services</a> using various software applications.</p>
+    <div class="strip-img reveal">PROJECT GALLERY PREVIEW</div>
+    <div style="text-align:center;margin-top:24px;">
+      <a href="#samples" class="btn btn-blue reveal">See our BIM samples</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFITS OF BIM ============ -->
+<section class="benefits-section">
+  <div class="container">
+    <h3 class="reveal">Benefits of BIM</h3>
+    <p class="reveal" style="color:var(--muted);max-width:800px;">The various benefits of BIM as enjoyed by the different parties involved are listed below.</p>
+    <div class="benefits-cards">
+      <div class="benefit-card reveal">
+        <h4>During Pre-Construction Stage</h4>
+        <ul>
+          <li>Allows verification if the proposed design is feasible financially</li>
+          <li>If not, instantly creates a new design within the constraints of desired time/cost parameters</li>
+          <li>Allows architecture/engineering documentation</li>
+        </ul>
+      </div>
+      <div class="benefit-card reveal d1">
+        <h4>During Designing Stage</h4>
+        <ul>
+          <li>3D visualization during any stage of the design process</li>
+          <li>Accurate 2D drawings extraction during the design</li>
+          <li>Determines if the 3D model is constructible at the site</li>
+          <li>Extraction of parameters for sustainable building design performance analysis</li>
+          <li>Contains intricate details on the structure, site, and proposed materials</li>
+          <li>Enables accuracy in cost estimates and budget control</li>
+        </ul>
+      </div>
+      <div class="benefit-card reveal d2">
+        <h4>During Fabrication Stage</h4>
+        <ul>
+          <li>Accurate visualization of the building with real-time parameters</li>
+          <li>Better onsite coordination of services in construction sequencing</li>
+          <li>Detects clashes and allows resolution for the entire building</li>
+          <li>Reflection of a minor change in the digital database throughout the model</li>
+          <li>Construction documents with minute detail on structure, quantities, materials</li>
+          <li>Easy facility management and maintenance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOFTWARE PROFICIENCY ============ -->
+<section class="software-section">
+  <div class="container">
+    <h3 class="reveal">Our Software Proficiency</h3>
+    <p class="reveal" style="color:var(--muted);max-width:900px;">Every BIM modeler at ArchVDC is constantly updated on the most advanced software packages and industrial applications. Our modelers are highly conversant in:</p>
+    <ul class="software-grid reveal">
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-civil3d"/></svg></span>Civil 3D</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-infraworks"/></svg></span>InfraWorks</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-recap"/></svg></span>ReCap Pro</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-revit"/></svg></span>Revit</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-cad"/></svg></span>Autodesk Docs</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-navis"/></svg></span>Navisworks Manage</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-dynamo"/></svg></span>Dynamo</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-insight"/></svg></span>Insight</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-3dsmax"/></svg></span>3ds Max</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-bim360"/></svg></span>BIM Collaborate Pro</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-rebarcad"/></svg></span>RebarCAD</li>
+      <li><span class="sw-ic"><svg width="18" height="18"><use href="#icon-planswift"/></svg></span>PlanSwift</li>
+    </ul>
+    <div class="software-images">
+      <div class="img-block reveal">ARCHITECTURAL RENDER</div>
+      <div class="img-block reveal d1">BIM MODEL VIEW</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPLIT CTA ============ -->
+<section class="split-cta">
+  <div class="cta-orange reveal">
+    <h3>Contact us now</h3>
+    <p>If you have any queries related to our services, feel free to contact us today itself.</p>
+    <a href="#contact" class="btn btn-white">Contact Us</a>
+  </div>
+  <div class="cta-blue reveal">
+    <h3>Check our work samples</h3>
+    <p>Architectural, Structural, Mechanical, MEP/NAC, and Facade CAD and BIM samples.</p>
+    <a href="#samples" class="btn btn-white">View Samples</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER (shared) ============ -->
+<footer class="site-footer" id="contact">
+  <div class="container footer-grid">
+    <div class="foot-about">
+      <a href="index.html" class="logo" style="color:#fff;margin-bottom:14px;">
+        <span class="mark">A</span><span>ArchVDC</span>
+      </a>
+      <p>ArchVDC is a leading engineering service provider specializing in VDC, BIM, and CAD solutions for the construction industry. With over 300 engineers in architectural, facade, structural, and MEP domains, we help companies, contractors, architects, and engineers integrate BIM technology efficiently, ensuring projects meet timelines, standards, and budgets for optimal ROI.</p>
+      <ul class="foot-contacts">
+        <li><span class="flag"></span> USA &nbsp;|&nbsp; +1 215 904 2868</li>
+        <li><span class="flag" style="background:#f26b1d;"></span> UAE &nbsp;|&nbsp; +971 50 237 7430</li>
+        <li><span class="flag" style="background:#0e2138;"></span> IND &nbsp;|&nbsp; +91 484 298 8448</li>
+        <li><span class="flag" style="background:#2f8fd6;"></span> AUS &nbsp;|&nbsp; +61 363 877 090</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Our Services</h5>
+      <ul>
+        <li><a href="#">Engineering Services</a></li>
+        <li><a href="#">Industrial Plant Digitization</a></li>
+        <li><a href="#">Mechanical CAD/CAM</a></li>
+        <li><a href="#">GeoBIM Services</a></li>
+        <li><a href="#">BIM Training</a></li>
+        <li><a href="#">Digital Twin</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>VDC / BIM Services</h5>
+      <ul>
+        <li><a href="architectural-bim.html">Architectural BIM</a></li>
+        <li><a href="#">Structural BIM</a></li>
+        <li><a href="#">MEP BIM</a></li>
+        <li><a href="#">Facade BIM</a></li>
+        <li><a href="#">BIM Coordination</a></li>
+        <li><a href="#">Point Cloud to BIM</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#">Case Study</a></li>
+        <li><a href="#">Work Samples</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© Copyright 2026 ArchVDC | Privacy Policy</span>
+    <div class="socials">
+      <a href="#" aria-label="LinkedIn">in</a>
+      <a href="#" aria-label="Facebook">f</a>
+      <a href="#" aria-label="YouTube">▶</a>
+      <a href="#" aria-label="X">𝕏</a>
+      <a href="#" aria-label="Instagram">◎</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
